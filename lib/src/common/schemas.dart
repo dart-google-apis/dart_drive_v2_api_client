@@ -42,7 +42,7 @@ class About {
   /** The total number of quota bytes. */
   String quotaBytesTotal;
 
-  /** The number of quota bytes used. */
+  /** The number of quota bytes used by Google Drive. */
   String quotaBytesUsed;
 
   /** The number of quota bytes used by all Google apps (Drive, Picasa, etc.). */
@@ -476,7 +476,7 @@ class AboutImportFormats {
 
 }
 
-/** Information about a third-party application which the user has installed or given access to Google Drive. */
+/** The apps resource provides a list of the apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. */
 class App {
 
   /** Whether the app is authorized to access data on the user's Drive. */
@@ -1015,7 +1015,7 @@ class ChildList {
 
 }
 
-/** A reference to a file's child. */
+/** A reference to a folder's child. */
 class ChildReference {
 
   /** A link to the child. */
@@ -1487,16 +1487,13 @@ class File {
   /** A link for opening the file in using a relevant Google editor or viewer. */
   String alternateLink;
 
-  /** Whether this file is in the appdata folder. */
-  bool appDataContents;
-
   /** Create time for this file (formatted ISO8601 timestamp). */
   String createdDate;
 
   /** A short description of the file. */
   String description;
 
-  /** Short term download URL for the file. This will only be populated on files with content stored in Drive. */
+  /** Short lived download URL for the file. This is only populated for files with content stored in Drive. */
   String downloadUrl;
 
   /** Whether the file can be edited by the current user. */
@@ -1514,16 +1511,16 @@ class File {
   /** Links for exporting Google Docs to specific formats. */
   FileExportLinks exportLinks;
 
-  /** The file extension used when downloading this file. This field is set from the title when inserting or uploading new content. This will only be populated on files with content stored in Drive. */
+  /** The file extension used when downloading this file. This field is read only. To set the extension, include it in the title when creating the file. This is only populated for files with content stored in Drive. */
   String fileExtension;
 
-  /** The size of the file in bytes. This will only be populated on files with content stored in Drive. */
+  /** The size of the file in bytes. This is only populated for files with content stored in Drive. */
   String fileSize;
 
   /** A link to the file's icon. */
   String iconLink;
 
-  /** The id of the file. */
+  /** The ID of the file. */
   String id;
 
   /** Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content. */
@@ -1538,13 +1535,16 @@ class File {
   /** A group of labels for the file. */
   FileLabels labels;
 
-  /** Name of the last user to modify this file. This will only be populated if a user has edited this file. */
+  /** The last user to modify this file. */
+  User lastModifyingUser;
+
+  /** Name of the last user to modify this file. */
   String lastModifyingUserName;
 
   /** Last time this file was viewed by the user (formatted RFC 3339 timestamp). */
   String lastViewedByMeDate;
 
-  /** An MD5 checksum for the content of this file. This will only be populated on files with content stored in Drive. */
+  /** An MD5 checksum for the content of this file. This is populated only for files with content stored in Drive. */
   String md5Checksum;
 
   /** The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type. */
@@ -1561,6 +1561,9 @@ class File {
 
   /** Name(s) of the owner(s) of this file. */
   List<String> ownerNames;
+
+  /** The owner(s) of this file. */
+  List<User> owners;
 
   /** Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
@@ -1586,6 +1589,8 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
   /** The title of this file. */
   String title;
+
+  /** The permissions for the authenticated user on this file. */
   Permission userPermission;
 
   /** A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials. */
@@ -1601,9 +1606,6 @@ Setting this field will put the file in all of the provided folders. On insert, 
   File.fromJson(Map json) {
     if (json.containsKey("alternateLink")) {
       alternateLink = json["alternateLink"];
-    }
-    if (json.containsKey("appDataContents")) {
-      appDataContents = json["appDataContents"];
     }
     if (json.containsKey("createdDate")) {
       createdDate = json["createdDate"];
@@ -1653,6 +1655,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (json.containsKey("labels")) {
       labels = new FileLabels.fromJson(json["labels"]);
     }
+    if (json.containsKey("lastModifyingUser")) {
+      lastModifyingUser = new User.fromJson(json["lastModifyingUser"]);
+    }
     if (json.containsKey("lastModifyingUserName")) {
       lastModifyingUserName = json["lastModifyingUserName"];
     }
@@ -1678,6 +1683,12 @@ Setting this field will put the file in all of the provided folders. On insert, 
       ownerNames = [];
       json["ownerNames"].forEach((item) {
         ownerNames.add(item);
+      });
+    }
+    if (json.containsKey("owners")) {
+      owners = [];
+      json["owners"].forEach((item) {
+        owners.add(new User.fromJson(item));
       });
     }
     if (json.containsKey("parents")) {
@@ -1728,9 +1739,6 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (alternateLink != null) {
       output["alternateLink"] = alternateLink;
     }
-    if (appDataContents != null) {
-      output["appDataContents"] = appDataContents;
-    }
     if (createdDate != null) {
       output["createdDate"] = createdDate;
     }
@@ -1779,6 +1787,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (labels != null) {
       output["labels"] = labels.toJson();
     }
+    if (lastModifyingUser != null) {
+      output["lastModifyingUser"] = lastModifyingUser.toJson();
+    }
     if (lastModifyingUserName != null) {
       output["lastModifyingUserName"] = lastModifyingUserName;
     }
@@ -1804,6 +1815,12 @@ Setting this field will put the file in all of the provided folders. On insert, 
       output["ownerNames"] = new List();
       ownerNames.forEach((item) {
         output["ownerNames"].add(item);
+      });
+    }
+    if (owners != null) {
+      output["owners"] = new List();
+      owners.forEach((item) {
+        output["owners"].add(item.toJson());
       });
     }
     if (parents != null) {
@@ -1980,7 +1997,7 @@ class FileLabels {
 /** Indexable text attributes for the file (can only be written) */
 class FileIndexableText {
 
-  /** The text to be indexed for this file */
+  /** The text to be indexed for this file. */
   String text;
 
   /** Create new FileIndexableText from JSON data */
@@ -2469,7 +2486,7 @@ class ParentReference {
 
 }
 
-/** A single permission for a file. */
+/** A permission for a file. */
 class Permission {
 
   /** Additional roles for this user. Only commenter is currently allowed. */
@@ -2672,7 +2689,7 @@ class PermissionList {
 
 }
 
-/** A single revision of a file. */
+/** A revision of a file. */
 class Revision {
 
   /** Short term download URL for the file. This will only be populated on files with content stored in Drive. */
@@ -2692,6 +2709,9 @@ class Revision {
 
   /** This is always drive#revision. */
   String kind;
+
+  /** The last user to modify this revision. */
+  User lastModifyingUser;
 
   /** Name of the last user to modify this revision. */
   String lastModifyingUserName;
@@ -2745,6 +2765,9 @@ class Revision {
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
+    }
+    if (json.containsKey("lastModifyingUser")) {
+      lastModifyingUser = new User.fromJson(json["lastModifyingUser"]);
     }
     if (json.containsKey("lastModifyingUserName")) {
       lastModifyingUserName = json["lastModifyingUserName"];
@@ -2802,6 +2825,9 @@ class Revision {
     }
     if (kind != null) {
       output["kind"] = kind;
+    }
+    if (lastModifyingUser != null) {
+      output["lastModifyingUser"] = lastModifyingUser.toJson();
     }
     if (lastModifyingUserName != null) {
       output["lastModifyingUserName"] = lastModifyingUserName;
@@ -2933,11 +2959,14 @@ class User {
   /** A plain text displayable name for this user. */
   String displayName;
 
-  /** Whether this user is the same as the authenticated user of which the request was made on behalf. */
+  /** Whether this user is the same as the authenticated user for whom the request was made. */
   bool isAuthenticatedUser;
 
   /** This is always drive#user. */
   String kind;
+
+  /** The user's ID as visible in the permissions collection. */
+  String permissionId;
 
   /** The user's profile picture. */
   UserPicture picture;
@@ -2952,6 +2981,9 @@ class User {
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
+    }
+    if (json.containsKey("permissionId")) {
+      permissionId = json["permissionId"];
     }
     if (json.containsKey("picture")) {
       picture = new UserPicture.fromJson(json["picture"]);
@@ -2970,6 +3002,9 @@ class User {
     }
     if (kind != null) {
       output["kind"] = kind;
+    }
+    if (permissionId != null) {
+      output["permissionId"] = permissionId;
     }
     if (picture != null) {
       output["picture"] = picture.toJson();

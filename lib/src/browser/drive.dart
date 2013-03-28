@@ -40,6 +40,9 @@ class Drive extends BrowserClient {
   /** OAuth Scope2: View the files and documents in your Google Drive */
   static const String DRIVE_READONLY_SCOPE = "https://www.googleapis.com/auth/drive.readonly";
 
+  /** OAuth Scope2: New service: https://www.googleapis.com/auth/drive.scripts */
+  static const String DRIVE_SCRIPTS_SCOPE = "https://www.googleapis.com/auth/drive.scripts";
+
   /**
    * Data format for the response.
    * Added as queryParameter for each request.

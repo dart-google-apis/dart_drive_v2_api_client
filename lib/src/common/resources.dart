@@ -93,7 +93,7 @@ class AppsResource extends Resource {
   }
 
   /**
-   * Lists a user's apps.
+   * Lists a user's installed apps.
    *
    * [optParams] - Additional query parameters
    */
@@ -842,9 +842,12 @@ class FilesResource extends Resource {
    *
    * [timedTextTrackName] - The timed text track name.
    *
+   * [useContentAsIndexableText] - Whether to use the content as indexable text.
+   *   Default: false
+   *
    * [optParams] - Additional query parameters
    */
-  Future<File> insert(File request, {String content, String contentType, bool convert, bool ocr, String ocrLanguage, bool pinned, String timedTextLanguage, String timedTextTrackName, Map optParams}) {
+  Future<File> insert(File request, {String content, String contentType, bool convert, bool ocr, String ocrLanguage, bool pinned, String timedTextLanguage, String timedTextTrackName, bool useContentAsIndexableText, Map optParams}) {
     var completer = new Completer();
     var url = "files";
     var uploadUrl = "/upload/drive/v2/files";
@@ -858,6 +861,7 @@ class FilesResource extends Resource {
     if (pinned != null) queryParams["pinned"] = pinned;
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
+    if (useContentAsIndexableText != null) queryParams["useContentAsIndexableText"] = useContentAsIndexableText;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -946,7 +950,7 @@ class FilesResource extends Resource {
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
-   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision will be replaced.
+   * [newRevision] - Whether a blob upload should create a new revision. If not set or false, the blob data in the current head revision is replaced. If true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
    *   Default: true
    *
    * [ocr] - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -967,9 +971,12 @@ class FilesResource extends Resource {
    * [updateViewedDate] - Whether to update the view date after successfully updating the file.
    *   Default: true
    *
+   * [useContentAsIndexableText] - Whether to use the content as indexable text.
+   *   Default: false
+   *
    * [optParams] - Additional query parameters
    */
-  Future<File> patch(File request, String fileId, {bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, Map optParams}) {
+  Future<File> patch(File request, String fileId, {bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, bool useContentAsIndexableText, Map optParams}) {
     var completer = new Completer();
     var url = "files/{fileId}";
     var urlParams = new Map();
@@ -987,6 +994,7 @@ class FilesResource extends Resource {
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
     if (updateViewedDate != null) queryParams["updateViewedDate"] = updateViewedDate;
+    if (useContentAsIndexableText != null) queryParams["useContentAsIndexableText"] = useContentAsIndexableText;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1120,7 +1128,7 @@ class FilesResource extends Resource {
   }
 
   /**
-   * Updates file metadata and/or content
+   * Updates file metadata and/or content.
    *
    * [request] - File to send in this request
    *
@@ -1133,7 +1141,7 @@ class FilesResource extends Resource {
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
-   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision will be replaced.
+   * [newRevision] - Whether a blob upload should create a new revision. If not set or false, the blob data in the current head revision is replaced. If true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
    *   Default: true
    *
    * [ocr] - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -1154,9 +1162,12 @@ class FilesResource extends Resource {
    * [updateViewedDate] - Whether to update the view date after successfully updating the file.
    *   Default: true
    *
+   * [useContentAsIndexableText] - Whether to use the content as indexable text.
+   *   Default: false
+   *
    * [optParams] - Additional query parameters
    */
-  Future<File> update(File request, String fileId, {String content, String contentType, bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, Map optParams}) {
+  Future<File> update(File request, String fileId, {String content, String contentType, bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, bool useContentAsIndexableText, Map optParams}) {
     var completer = new Completer();
     var url = "files/{fileId}";
     var uploadUrl = "/upload/drive/v2/files/{fileId}";
@@ -1175,6 +1186,7 @@ class FilesResource extends Resource {
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
     if (updateViewedDate != null) queryParams["updateViewedDate"] = updateViewedDate;
+    if (useContentAsIndexableText != null) queryParams["useContentAsIndexableText"] = useContentAsIndexableText;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1459,18 +1471,21 @@ class PermissionsResource extends Resource {
    *
    * [fileId] - The ID for the file.
    *
-   * [sendNotificationEmails] - Whether to send notification emails.
+   * [emailMessage] - A custom message to include in notification emails.
+   *
+   * [sendNotificationEmails] - Whether to send notification emails when sharing to users or groups.
    *   Default: true
    *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> insert(Permission request, String fileId, {bool sendNotificationEmails, Map optParams}) {
+  Future<Permission> insert(Permission request, String fileId, {String emailMessage, bool sendNotificationEmails, Map optParams}) {
     var completer = new Completer();
     var url = "files/{fileId}/permissions";
     var urlParams = new Map();
     var queryParams = new Map();
 
     var paramErrors = new List();
+    if (emailMessage != null) queryParams["emailMessage"] = emailMessage;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (sendNotificationEmails != null) queryParams["sendNotificationEmails"] = sendNotificationEmails;
@@ -1541,9 +1556,12 @@ class PermissionsResource extends Resource {
    *
    * [permissionId] - The ID for the permission.
    *
+   * [transferOwnership] - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+   *   Default: false
+   *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> patch(Permission request, String fileId, String permissionId, {Map optParams}) {
+  Future<Permission> patch(Permission request, String fileId, String permissionId, {bool transferOwnership, Map optParams}) {
     var completer = new Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
     var urlParams = new Map();
@@ -1554,6 +1572,7 @@ class PermissionsResource extends Resource {
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
     if (permissionId != null) urlParams["permissionId"] = permissionId;
+    if (transferOwnership != null) queryParams["transferOwnership"] = transferOwnership;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1584,9 +1603,12 @@ class PermissionsResource extends Resource {
    *
    * [permissionId] - The ID for the permission.
    *
+   * [transferOwnership] - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+   *   Default: false
+   *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> update(Permission request, String fileId, String permissionId, {Map optParams}) {
+  Future<Permission> update(Permission request, String fileId, String permissionId, {bool transferOwnership, Map optParams}) {
     var completer = new Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
     var urlParams = new Map();
@@ -1597,6 +1619,7 @@ class PermissionsResource extends Resource {
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
     if (permissionId != null) urlParams["permissionId"] = permissionId;
+    if (transferOwnership != null) queryParams["transferOwnership"] = transferOwnership;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
