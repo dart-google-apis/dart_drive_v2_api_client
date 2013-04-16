@@ -18,13 +18,13 @@ class AboutResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<About> get({bool includeSubscribed, String maxChangeIdCount, String startChangeId, Map optParams}) {
-    var completer = new Completer();
+  async.Future<About> get({core.bool includeSubscribed, core.String maxChangeIdCount, core.String startChangeId, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "about";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (includeSubscribed != null) queryParams["includeSubscribed"] = includeSubscribed;
     if (maxChangeIdCount != null) queryParams["maxChangeIdCount"] = maxChangeIdCount;
     if (startChangeId != null) queryParams["startChangeId"] = startChangeId;
@@ -62,13 +62,13 @@ class AppsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<App> get(String appId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<App> get(core.String appId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "apps/{appId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (appId == null) paramErrors.add("appId is required");
     if (appId != null) urlParams["appId"] = appId;
     if (optParams != null) {
@@ -97,13 +97,13 @@ class AppsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<AppList> list({Map optParams}) {
-    var completer = new Completer();
+  async.Future<AppList> list({core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "apps";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -138,13 +138,13 @@ class ChangesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Change> get(String changeId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Change> get(core.String changeId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "changes/{changeId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (changeId == null) paramErrors.add("changeId is required");
     if (changeId != null) urlParams["changeId"] = changeId;
     if (optParams != null) {
@@ -187,13 +187,13 @@ class ChangesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChangeList> list({bool includeDeleted, bool includeSubscribed, int maxResults, String pageToken, String startChangeId, Map optParams}) {
-    var completer = new Completer();
+  async.Future<ChangeList> list({core.bool includeDeleted, core.bool includeSubscribed, core.int maxResults, core.String pageToken, core.String startChangeId, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "changes";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (includeDeleted != null) queryParams["includeDeleted"] = includeDeleted;
     if (includeSubscribed != null) queryParams["includeSubscribed"] = includeSubscribed;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
@@ -235,13 +235,13 @@ class ChildrenResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String folderId, String childId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String folderId, core.String childId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{folderId}/children/{childId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (childId == null) paramErrors.add("childId is required");
     if (childId != null) urlParams["childId"] = childId;
     if (folderId == null) paramErrors.add("folderId is required");
@@ -276,13 +276,13 @@ class ChildrenResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChildReference> get(String folderId, String childId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<ChildReference> get(core.String folderId, core.String childId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{folderId}/children/{childId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (childId == null) paramErrors.add("childId is required");
     if (childId != null) urlParams["childId"] = childId;
     if (folderId == null) paramErrors.add("folderId is required");
@@ -317,13 +317,13 @@ class ChildrenResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChildReference> insert(ChildReference request, String folderId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<ChildReference> insert(ChildReference request, core.String folderId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{folderId}/children";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (folderId == null) paramErrors.add("folderId is required");
     if (folderId != null) urlParams["folderId"] = folderId;
     if (optParams != null) {
@@ -362,13 +362,13 @@ class ChildrenResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChildList> list(String folderId, {int maxResults, String pageToken, String q, Map optParams}) {
-    var completer = new Completer();
+  async.Future<ChildList> list(core.String folderId, {core.int maxResults, core.String pageToken, core.String q, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{folderId}/children";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (folderId == null) paramErrors.add("folderId is required");
     if (folderId != null) urlParams["folderId"] = folderId;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
@@ -410,13 +410,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, String commentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, core.String commentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -454,13 +454,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Comment> get(String fileId, String commentId, {bool includeDeleted, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Comment> get(core.String fileId, core.String commentId, {core.bool includeDeleted, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -496,13 +496,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Comment> insert(Comment request, String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Comment> insert(Comment request, core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -545,13 +545,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentList> list(String fileId, {bool includeDeleted, int maxResults, String pageToken, String updatedMin, Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentList> list(core.String fileId, {core.bool includeDeleted, core.int maxResults, core.String pageToken, core.String updatedMin, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (includeDeleted != null) queryParams["includeDeleted"] = includeDeleted;
@@ -590,13 +590,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Comment> patch(Comment request, String fileId, String commentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Comment> patch(Comment request, core.String fileId, core.String commentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -633,13 +633,13 @@ class CommentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Comment> update(Comment request, String fileId, String commentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Comment> update(Comment request, core.String fileId, core.String commentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -695,13 +695,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> copy(File request, String fileId, {bool convert, bool ocr, String ocrLanguage, bool pinned, String timedTextLanguage, String timedTextTrackName, Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> copy(File request, core.String fileId, {core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/copy";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (convert != null) queryParams["convert"] = convert;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -738,13 +738,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -783,13 +783,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> get(String fileId, {String projection, bool updateViewedDate, Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> get(core.String fileId, {core.String projection, core.bool updateViewedDate, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (projection != null && !["BASIC", "FULL"].contains(projection)) {
@@ -847,14 +847,14 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> insert(File request, {String content, String contentType, bool convert, bool ocr, String ocrLanguage, bool pinned, String timedTextLanguage, String timedTextTrackName, bool useContentAsIndexableText, Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> insert(File request, {core.String content, core.String contentType, core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.bool useContentAsIndexableText, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files";
     var uploadUrl = "/upload/drive/v2/files";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (convert != null) queryParams["convert"] = convert;
     if (ocr != null) queryParams["ocr"] = ocr;
     if (ocrLanguage != null) queryParams["ocrLanguage"] = ocrLanguage;
@@ -905,13 +905,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<FileList> list({int maxResults, String pageToken, String projection, String q, Map optParams}) {
-    var completer = new Completer();
+  async.Future<FileList> list({core.int maxResults, core.String pageToken, core.String projection, core.String q, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (projection != null && !["BASIC", "FULL"].contains(projection)) {
@@ -976,13 +976,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> patch(File request, String fileId, {bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, bool useContentAsIndexableText, Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> patch(File request, core.String fileId, {core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (convert != null) queryParams["convert"] = convert;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -1023,13 +1023,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> touch(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> touch(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/touch";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1060,13 +1060,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> trash(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> trash(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/trash";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1097,13 +1097,13 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> untrash(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> untrash(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/untrash";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1167,14 +1167,14 @@ class FilesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<File> update(File request, String fileId, {String content, String contentType, bool convert, bool newRevision, bool ocr, String ocrLanguage, bool pinned, bool setModifiedDate, String timedTextLanguage, String timedTextTrackName, bool updateViewedDate, bool useContentAsIndexableText, Map optParams}) {
-    var completer = new Completer();
+  async.Future<File> update(File request, core.String fileId, {core.String content, core.String contentType, core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}";
     var uploadUrl = "/upload/drive/v2/files/{fileId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (convert != null) queryParams["convert"] = convert;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -1227,13 +1227,13 @@ class ParentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, String parentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, core.String parentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/parents/{parentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (parentId == null) paramErrors.add("parentId is required");
@@ -1268,13 +1268,13 @@ class ParentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ParentReference> get(String fileId, String parentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<ParentReference> get(core.String fileId, core.String parentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/parents/{parentId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (parentId == null) paramErrors.add("parentId is required");
@@ -1309,13 +1309,13 @@ class ParentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ParentReference> insert(ParentReference request, String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<ParentReference> insert(ParentReference request, core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/parents";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1346,13 +1346,13 @@ class ParentsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<ParentList> list(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<ParentList> list(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/parents";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1391,13 +1391,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, String permissionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, core.String permissionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
@@ -1432,13 +1432,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> get(String fileId, String permissionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Permission> get(core.String fileId, core.String permissionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
@@ -1478,13 +1478,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> insert(Permission request, String fileId, {String emailMessage, bool sendNotificationEmails, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Permission> insert(Permission request, core.String fileId, {core.String emailMessage, core.bool sendNotificationEmails, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (emailMessage != null) queryParams["emailMessage"] = emailMessage;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -1517,13 +1517,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<PermissionList> list(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<PermissionList> list(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -1561,13 +1561,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> patch(Permission request, String fileId, String permissionId, {bool transferOwnership, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Permission> patch(Permission request, core.String fileId, core.String permissionId, {core.bool transferOwnership, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
@@ -1608,13 +1608,13 @@ class PermissionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Permission> update(Permission request, String fileId, String permissionId, {bool transferOwnership, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Permission> update(Permission request, core.String fileId, core.String permissionId, {core.bool transferOwnership, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/permissions/{permissionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (permissionId == null) paramErrors.add("permissionId is required");
@@ -1642,6 +1642,272 @@ class PermissionsResource extends Resource {
   }
 }
 
+class PropertiesResource extends Resource {
+
+  PropertiesResource(Client client) : super(client) {
+  }
+
+  /**
+   * Deletes a property.
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [propertyKey] - The key of the property.
+   *
+   * [visibility] - The visibility of the property.
+   *   Default: private
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> delete(core.String fileId, core.String propertyKey, {core.String visibility, core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties/{propertyKey}";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (propertyKey == null) paramErrors.add("propertyKey is required");
+    if (propertyKey != null) urlParams["propertyKey"] = propertyKey;
+    if (visibility != null) queryParams["visibility"] = visibility;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(data))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Gets a property by its key.
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [propertyKey] - The key of the property.
+   *
+   * [visibility] - The visibility of the property.
+   *   Default: private
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Property> get(core.String fileId, core.String propertyKey, {core.String visibility, core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties/{propertyKey}";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (propertyKey == null) paramErrors.add("propertyKey is required");
+    if (propertyKey != null) urlParams["propertyKey"] = propertyKey;
+    if (visibility != null) queryParams["visibility"] = visibility;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new Property.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Adds a property to a file.
+   *
+   * [request] - Property to send in this request
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Property> insert(Property request, core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new Property.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Lists a file's properties.
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<PropertyList> list(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new PropertyList.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Updates a property. This method supports patch semantics.
+   *
+   * [request] - Property to send in this request
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [propertyKey] - The key of the property.
+   *
+   * [visibility] - The visibility of the property.
+   *   Default: private
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Property> patch(Property request, core.String fileId, core.String propertyKey, {core.String visibility, core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties/{propertyKey}";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (propertyKey == null) paramErrors.add("propertyKey is required");
+    if (propertyKey != null) urlParams["propertyKey"] = propertyKey;
+    if (visibility != null) queryParams["visibility"] = visibility;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "PATCH", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new Property.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Updates a property.
+   *
+   * [request] - Property to send in this request
+   *
+   * [fileId] - The ID of the file.
+   *
+   * [propertyKey] - The key of the property.
+   *
+   * [visibility] - The visibility of the property.
+   *   Default: private
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Property> update(Property request, core.String fileId, core.String propertyKey, {core.String visibility, core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "files/{fileId}/properties/{propertyKey}";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (propertyKey == null) paramErrors.add("propertyKey is required");
+    if (propertyKey != null) urlParams["propertyKey"] = propertyKey;
+    if (visibility != null) queryParams["visibility"] = visibility;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new Property.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+}
+
 class RepliesResource extends Resource {
 
   RepliesResource(Client client) : super(client) {
@@ -1658,13 +1924,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, String commentId, String replyId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, core.String commentId, core.String replyId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies/{replyId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1706,13 +1972,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentReply> get(String fileId, String commentId, String replyId, {bool includeDeleted, Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentReply> get(core.String fileId, core.String commentId, core.String replyId, {core.bool includeDeleted, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies/{replyId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1752,13 +2018,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentReply> insert(CommentReply request, String fileId, String commentId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentReply> insert(CommentReply request, core.String fileId, core.String commentId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1803,13 +2069,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentReplyList> list(String fileId, String commentId, {bool includeDeleted, int maxResults, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentReplyList> list(core.String fileId, core.String commentId, {core.bool includeDeleted, core.int maxResults, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1851,13 +2117,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentReply> patch(CommentReply request, String fileId, String commentId, String replyId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentReply> patch(CommentReply request, core.String fileId, core.String commentId, core.String replyId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies/{replyId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1898,13 +2164,13 @@ class RepliesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<CommentReply> update(CommentReply request, String fileId, String commentId, String replyId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<CommentReply> update(CommentReply request, core.String fileId, core.String commentId, core.String replyId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/comments/{commentId}/replies/{replyId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (commentId == null) paramErrors.add("commentId is required");
     if (commentId != null) urlParams["commentId"] = commentId;
     if (fileId == null) paramErrors.add("fileId is required");
@@ -1947,13 +2213,13 @@ class RevisionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String fileId, String revisionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String fileId, core.String revisionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/revisions/{revisionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (revisionId == null) paramErrors.add("revisionId is required");
@@ -1988,13 +2254,13 @@ class RevisionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Revision> get(String fileId, String revisionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Revision> get(core.String fileId, core.String revisionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/revisions/{revisionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (revisionId == null) paramErrors.add("revisionId is required");
@@ -2027,13 +2293,13 @@ class RevisionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<RevisionList> list(String fileId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<RevisionList> list(core.String fileId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/revisions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (optParams != null) {
@@ -2068,13 +2334,13 @@ class RevisionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Revision> patch(Revision request, String fileId, String revisionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Revision> patch(Revision request, core.String fileId, core.String revisionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/revisions/{revisionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (revisionId == null) paramErrors.add("revisionId is required");
@@ -2111,13 +2377,13 @@ class RevisionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Revision> update(Revision request, String fileId, String revisionId, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Revision> update(Revision request, core.String fileId, core.String revisionId, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "files/{fileId}/revisions/{revisionId}";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
     if (revisionId == null) paramErrors.add("revisionId is required");

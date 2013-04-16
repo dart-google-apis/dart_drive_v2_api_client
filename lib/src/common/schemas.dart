@@ -4,67 +4,67 @@ part of drive_v2_api_client;
 class About {
 
   /** Information about supported additional roles per file type. The most specific type takes precedence. */
-  List<AboutAdditionalRoleInfo> additionalRoleInfo;
+  core.List<AboutAdditionalRoleInfo> additionalRoleInfo;
 
   /** The domain sharing policy for the current user. */
-  String domainSharingPolicy;
+  core.String domainSharingPolicy;
 
   /** The ETag of the item. */
-  String etag;
+  core.String etag;
 
   /** The allowable export formats. */
-  List<AboutExportFormats> exportFormats;
+  core.List<AboutExportFormats> exportFormats;
 
   /** List of additional features enabled on this account. */
-  List<AboutFeatures> features;
+  core.List<AboutFeatures> features;
 
   /** The allowable import formats. */
-  List<AboutImportFormats> importFormats;
+  core.List<AboutImportFormats> importFormats;
 
   /** A boolean indicating whether the authenticated app is installed by the authenticated user. */
-  bool isCurrentAppInstalled;
+  core.bool isCurrentAppInstalled;
 
   /** This is always drive#about. */
-  String kind;
+  core.String kind;
 
   /** The largest change id. */
-  String largestChangeId;
+  core.String largestChangeId;
 
   /** List of max upload sizes for each file type. The most specific type takes precedence. */
-  List<AboutMaxUploadSizes> maxUploadSizes;
+  core.List<AboutMaxUploadSizes> maxUploadSizes;
 
   /** The name of the current user. */
-  String name;
+  core.String name;
 
   /** The current user's ID as visible in the permissions collection. */
-  String permissionId;
+  core.String permissionId;
 
   /** The total number of quota bytes. */
-  String quotaBytesTotal;
+  core.String quotaBytesTotal;
 
   /** The number of quota bytes used by Google Drive. */
-  String quotaBytesUsed;
+  core.String quotaBytesUsed;
 
   /** The number of quota bytes used by all Google apps (Drive, Picasa, etc.). */
-  String quotaBytesUsedAggregate;
+  core.String quotaBytesUsedAggregate;
 
   /** The number of quota bytes used by trashed items. */
-  String quotaBytesUsedInTrash;
+  core.String quotaBytesUsedInTrash;
 
   /** The number of remaining change ids. */
-  String remainingChangeIds;
+  core.String remainingChangeIds;
 
   /** The id of the root folder. */
-  String rootFolderId;
+  core.String rootFolderId;
 
   /** A link back to this item. */
-  String selfLink;
+  core.String selfLink;
 
   /** The authenticated user. */
   User user;
 
   /** Create new About from JSON data */
-  About.fromJson(Map json) {
+  About.fromJson(core.Map json) {
     if (json.containsKey("additionalRoleInfo")) {
       additionalRoleInfo = [];
       json["additionalRoleInfo"].forEach((item) {
@@ -143,11 +143,11 @@ class About {
   }
 
   /** Create JSON Object for About */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (additionalRoleInfo != null) {
-      output["additionalRoleInfo"] = new List();
+      output["additionalRoleInfo"] = new core.List();
       additionalRoleInfo.forEach((item) {
         output["additionalRoleInfo"].add(item.toJson());
       });
@@ -159,19 +159,19 @@ class About {
       output["etag"] = etag;
     }
     if (exportFormats != null) {
-      output["exportFormats"] = new List();
+      output["exportFormats"] = new core.List();
       exportFormats.forEach((item) {
         output["exportFormats"].add(item.toJson());
       });
     }
     if (features != null) {
-      output["features"] = new List();
+      output["features"] = new core.List();
       features.forEach((item) {
         output["features"].add(item.toJson());
       });
     }
     if (importFormats != null) {
-      output["importFormats"] = new List();
+      output["importFormats"] = new core.List();
       importFormats.forEach((item) {
         output["importFormats"].add(item.toJson());
       });
@@ -186,7 +186,7 @@ class About {
       output["largestChangeId"] = largestChangeId;
     }
     if (maxUploadSizes != null) {
-      output["maxUploadSizes"] = new List();
+      output["maxUploadSizes"] = new core.List();
       maxUploadSizes.forEach((item) {
         output["maxUploadSizes"].add(item.toJson());
       });
@@ -226,20 +226,20 @@ class About {
   }
 
   /** Return String representation of About */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutMaxUploadSizes {
 
   /** The max upload size for this type. */
-  String size;
+  core.String size;
 
   /** The file type. */
-  String type;
+  core.String type;
 
   /** Create new AboutMaxUploadSizes from JSON data */
-  AboutMaxUploadSizes.fromJson(Map json) {
+  AboutMaxUploadSizes.fromJson(core.Map json) {
     if (json.containsKey("size")) {
       size = json["size"];
     }
@@ -249,8 +249,8 @@ class AboutMaxUploadSizes {
   }
 
   /** Create JSON Object for AboutMaxUploadSizes */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (size != null) {
       output["size"] = size;
@@ -263,20 +263,20 @@ class AboutMaxUploadSizes {
   }
 
   /** Return String representation of AboutMaxUploadSizes */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutExportFormats {
 
   /** The content type to convert from. */
-  String source;
+  core.String source;
 
   /** The possible content types to convert to. */
-  List<String> targets;
+  core.List<core.String> targets;
 
   /** Create new AboutExportFormats from JSON data */
-  AboutExportFormats.fromJson(Map json) {
+  AboutExportFormats.fromJson(core.Map json) {
     if (json.containsKey("source")) {
       source = json["source"];
     }
@@ -289,14 +289,14 @@ class AboutExportFormats {
   }
 
   /** Create JSON Object for AboutExportFormats */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (source != null) {
       output["source"] = source;
     }
     if (targets != null) {
-      output["targets"] = new List();
+      output["targets"] = new core.List();
       targets.forEach((item) {
         output["targets"].add(item);
       });
@@ -306,20 +306,20 @@ class AboutExportFormats {
   }
 
   /** Return String representation of AboutExportFormats */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutFeatures {
 
   /** The name of the feature. */
-  String featureName;
+  core.String featureName;
 
   /** The request limit rate for this feature, in queries per second. */
-  num featureRate;
+  core.num featureRate;
 
   /** Create new AboutFeatures from JSON data */
-  AboutFeatures.fromJson(Map json) {
+  AboutFeatures.fromJson(core.Map json) {
     if (json.containsKey("featureName")) {
       featureName = json["featureName"];
     }
@@ -329,8 +329,8 @@ class AboutFeatures {
   }
 
   /** Create JSON Object for AboutFeatures */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (featureName != null) {
       output["featureName"] = featureName;
@@ -343,20 +343,20 @@ class AboutFeatures {
   }
 
   /** Return String representation of AboutFeatures */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutAdditionalRoleInfo {
 
   /** The supported additional roles per primary role. */
-  List<AboutAdditionalRoleInfoRoleSets> roleSets;
+  core.List<AboutAdditionalRoleInfoRoleSets> roleSets;
 
   /** The content type that this additional role info applies to. */
-  String type;
+  core.String type;
 
   /** Create new AboutAdditionalRoleInfo from JSON data */
-  AboutAdditionalRoleInfo.fromJson(Map json) {
+  AboutAdditionalRoleInfo.fromJson(core.Map json) {
     if (json.containsKey("roleSets")) {
       roleSets = [];
       json["roleSets"].forEach((item) {
@@ -369,11 +369,11 @@ class AboutAdditionalRoleInfo {
   }
 
   /** Create JSON Object for AboutAdditionalRoleInfo */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (roleSets != null) {
-      output["roleSets"] = new List();
+      output["roleSets"] = new core.List();
       roleSets.forEach((item) {
         output["roleSets"].add(item.toJson());
       });
@@ -386,20 +386,20 @@ class AboutAdditionalRoleInfo {
   }
 
   /** Return String representation of AboutAdditionalRoleInfo */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutAdditionalRoleInfoRoleSets {
 
   /** The supported additional roles with the primary role. */
-  List<String> additionalRoles;
+  core.List<core.String> additionalRoles;
 
   /** A primary permission role. */
-  String primaryRole;
+  core.String primaryRole;
 
   /** Create new AboutAdditionalRoleInfoRoleSets from JSON data */
-  AboutAdditionalRoleInfoRoleSets.fromJson(Map json) {
+  AboutAdditionalRoleInfoRoleSets.fromJson(core.Map json) {
     if (json.containsKey("additionalRoles")) {
       additionalRoles = [];
       json["additionalRoles"].forEach((item) {
@@ -412,11 +412,11 @@ class AboutAdditionalRoleInfoRoleSets {
   }
 
   /** Create JSON Object for AboutAdditionalRoleInfoRoleSets */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (additionalRoles != null) {
-      output["additionalRoles"] = new List();
+      output["additionalRoles"] = new core.List();
       additionalRoles.forEach((item) {
         output["additionalRoles"].add(item);
       });
@@ -429,20 +429,20 @@ class AboutAdditionalRoleInfoRoleSets {
   }
 
   /** Return String representation of AboutAdditionalRoleInfoRoleSets */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class AboutImportFormats {
 
   /** The imported file's content type to convert from. */
-  String source;
+  core.String source;
 
   /** The possible content types to convert to. */
-  List<String> targets;
+  core.List<core.String> targets;
 
   /** Create new AboutImportFormats from JSON data */
-  AboutImportFormats.fromJson(Map json) {
+  AboutImportFormats.fromJson(core.Map json) {
     if (json.containsKey("source")) {
       source = json["source"];
     }
@@ -455,14 +455,14 @@ class AboutImportFormats {
   }
 
   /** Create JSON Object for AboutImportFormats */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (source != null) {
       output["source"] = source;
     }
     if (targets != null) {
-      output["targets"] = new List();
+      output["targets"] = new core.List();
       targets.forEach((item) {
         output["targets"].add(item);
       });
@@ -472,7 +472,7 @@ class AboutImportFormats {
   }
 
   /** Return String representation of AboutImportFormats */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -480,52 +480,52 @@ class AboutImportFormats {
 class App {
 
   /** Whether the app is authorized to access data on the user's Drive. */
-  bool authorized;
+  core.bool authorized;
 
   /** The various icons for the app. */
-  List<AppIcons> icons;
+  core.List<AppIcons> icons;
 
   /** The ID of the app. */
-  String id;
+  core.String id;
 
   /** Whether the app is installed. */
-  bool installed;
+  core.bool installed;
 
   /** This is always drive#app. */
-  String kind;
+  core.String kind;
 
   /** The name of the app. */
-  String name;
+  core.String name;
 
   /** The type of object this app creates (e.g. Chart). If empty, the app name should be used instead. */
-  String objectType;
+  core.String objectType;
 
   /** The list of primary file extensions. */
-  List<String> primaryFileExtensions;
+  core.List<core.String> primaryFileExtensions;
 
   /** The list of primary mime types. */
-  List<String> primaryMimeTypes;
+  core.List<core.String> primaryMimeTypes;
 
   /** The product URL. */
-  String productUrl;
+  core.String productUrl;
 
   /** The list of secondary file extensions. */
-  List<String> secondaryFileExtensions;
+  core.List<core.String> secondaryFileExtensions;
 
   /** The list of secondary mime types. */
-  List<String> secondaryMimeTypes;
+  core.List<core.String> secondaryMimeTypes;
 
   /** Whether this app supports creating new objects. */
-  bool supportsCreate;
+  core.bool supportsCreate;
 
   /** Whether this app supports importing Google Docs. */
-  bool supportsImport;
+  core.bool supportsImport;
 
   /** Whether the app is selected as the default handler for the types it supports. */
-  bool useByDefault;
+  core.bool useByDefault;
 
   /** Create new App from JSON data */
-  App.fromJson(Map json) {
+  App.fromJson(core.Map json) {
     if (json.containsKey("authorized")) {
       authorized = json["authorized"];
     }
@@ -589,14 +589,14 @@ class App {
   }
 
   /** Create JSON Object for App */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (authorized != null) {
       output["authorized"] = authorized;
     }
     if (icons != null) {
-      output["icons"] = new List();
+      output["icons"] = new core.List();
       icons.forEach((item) {
         output["icons"].add(item.toJson());
       });
@@ -617,13 +617,13 @@ class App {
       output["objectType"] = objectType;
     }
     if (primaryFileExtensions != null) {
-      output["primaryFileExtensions"] = new List();
+      output["primaryFileExtensions"] = new core.List();
       primaryFileExtensions.forEach((item) {
         output["primaryFileExtensions"].add(item);
       });
     }
     if (primaryMimeTypes != null) {
-      output["primaryMimeTypes"] = new List();
+      output["primaryMimeTypes"] = new core.List();
       primaryMimeTypes.forEach((item) {
         output["primaryMimeTypes"].add(item);
       });
@@ -632,13 +632,13 @@ class App {
       output["productUrl"] = productUrl;
     }
     if (secondaryFileExtensions != null) {
-      output["secondaryFileExtensions"] = new List();
+      output["secondaryFileExtensions"] = new core.List();
       secondaryFileExtensions.forEach((item) {
         output["secondaryFileExtensions"].add(item);
       });
     }
     if (secondaryMimeTypes != null) {
-      output["secondaryMimeTypes"] = new List();
+      output["secondaryMimeTypes"] = new core.List();
       secondaryMimeTypes.forEach((item) {
         output["secondaryMimeTypes"].add(item);
       });
@@ -657,7 +657,7 @@ class App {
   }
 
   /** Return String representation of App */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -667,16 +667,16 @@ class AppIcons {
 - application - icon for the application 
 - document - icon for a file associated with the app 
 - documentShared - icon for a shared file associated with the app */
-  String category;
+  core.String category;
 
   /** URL for the icon. */
-  String iconUrl;
+  core.String iconUrl;
 
   /** Size of the icon. Represented as the maximum of the width and height. */
-  int size;
+  core.int size;
 
   /** Create new AppIcons from JSON data */
-  AppIcons.fromJson(Map json) {
+  AppIcons.fromJson(core.Map json) {
     if (json.containsKey("category")) {
       category = json["category"];
     }
@@ -689,8 +689,8 @@ class AppIcons {
   }
 
   /** Create JSON Object for AppIcons */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (category != null) {
       output["category"] = category;
@@ -706,7 +706,7 @@ class AppIcons {
   }
 
   /** Return String representation of AppIcons */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -714,19 +714,19 @@ class AppIcons {
 class AppList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of apps. */
-  List<App> items;
+  core.List<App> items;
 
   /** This is always drive#appList. */
-  String kind;
+  core.String kind;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new AppList from JSON data */
-  AppList.fromJson(Map json) {
+  AppList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -745,14 +745,14 @@ class AppList {
   }
 
   /** Create JSON Object for AppList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -768,7 +768,7 @@ class AppList {
   }
 
   /** Return String representation of AppList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -776,25 +776,25 @@ class AppList {
 class Change {
 
   /** Whether the file has been deleted. */
-  bool deleted;
+  core.bool deleted;
 
   /** The updated state of the file. Present if the file has not been deleted. */
   File file;
 
   /** The ID of the file associated with this change. */
-  String fileId;
+  core.String fileId;
 
   /** The ID of the change. */
-  String id;
+  core.String id;
 
   /** This is always drive#change. */
-  String kind;
+  core.String kind;
 
   /** A link back to this change. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new Change from JSON data */
-  Change.fromJson(Map json) {
+  Change.fromJson(core.Map json) {
     if (json.containsKey("deleted")) {
       deleted = json["deleted"];
     }
@@ -816,8 +816,8 @@ class Change {
   }
 
   /** Create JSON Object for Change */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (deleted != null) {
       output["deleted"] = deleted;
@@ -842,7 +842,7 @@ class Change {
   }
 
   /** Return String representation of Change */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -850,28 +850,28 @@ class Change {
 class ChangeList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of changes. */
-  List<Change> items;
+  core.List<Change> items;
 
   /** This is always drive#changeList. */
-  String kind;
+  core.String kind;
 
   /** The current largest change ID. */
-  String largestChangeId;
+  core.String largestChangeId;
 
   /** A link to the next page of changes. */
-  String nextLink;
+  core.String nextLink;
 
   /** The page token for the next page of changes. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new ChangeList from JSON data */
-  ChangeList.fromJson(Map json) {
+  ChangeList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -899,14 +899,14 @@ class ChangeList {
   }
 
   /** Create JSON Object for ChangeList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -931,7 +931,7 @@ class ChangeList {
   }
 
   /** Return String representation of ChangeList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -939,25 +939,25 @@ class ChangeList {
 class ChildList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of children. */
-  List<ChildReference> items;
+  core.List<ChildReference> items;
 
   /** This is always drive#childList. */
-  String kind;
+  core.String kind;
 
   /** A link to the next page of children. */
-  String nextLink;
+  core.String nextLink;
 
   /** The page token for the next page of children. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new ChildList from JSON data */
-  ChildList.fromJson(Map json) {
+  ChildList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -982,14 +982,14 @@ class ChildList {
   }
 
   /** Create JSON Object for ChildList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -1011,7 +1011,7 @@ class ChildList {
   }
 
   /** Return String representation of ChildList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1019,19 +1019,19 @@ class ChildList {
 class ChildReference {
 
   /** A link to the child. */
-  String childLink;
+  core.String childLink;
 
   /** The ID of the child. */
-  String id;
+  core.String id;
 
   /** This is always drive#childReference. */
-  String kind;
+  core.String kind;
 
   /** A link back to this reference. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new ChildReference from JSON data */
-  ChildReference.fromJson(Map json) {
+  ChildReference.fromJson(core.Map json) {
     if (json.containsKey("childLink")) {
       childLink = json["childLink"];
     }
@@ -1047,8 +1047,8 @@ class ChildReference {
   }
 
   /** Create JSON Object for ChildReference */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (childLink != null) {
       output["childLink"] = childLink;
@@ -1067,7 +1067,7 @@ class ChildReference {
   }
 
   /** Return String representation of ChildReference */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1075,54 +1075,54 @@ class ChildReference {
 class Comment {
 
   /** A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties. */
-  String anchor;
+  core.String anchor;
 
   /** The user who wrote this comment. */
   User author;
 
   /** The ID of the comment. */
-  String commentId;
+  core.String commentId;
 
   /** The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content. */
-  String content;
+  core.String content;
 
   /** The context of the file which is being commented on. */
   CommentContext context;
 
   /** The date when this comment was first created. */
-  String createdDate;
+  core.String createdDate;
 
   /** Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed. */
-  bool deleted;
+  core.bool deleted;
 
   /** The file which this comment is addressing. */
-  String fileId;
+  core.String fileId;
 
   /** The title of the file which this comment is addressing. */
-  String fileTitle;
+  core.String fileTitle;
 
   /** HTML formatted content for this comment. */
-  String htmlContent;
+  core.String htmlContent;
 
   /** This is always drive#comment. */
-  String kind;
+  core.String kind;
 
   /** The date when this comment or any of its replies were last modified. */
-  String modifiedDate;
+  core.String modifiedDate;
 
   /** Replies to this post. */
-  List<CommentReply> replies;
+  core.List<CommentReply> replies;
 
   /** A link back to this comment. */
-  String selfLink;
+  core.String selfLink;
 
   /** The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
 - "open" - The comment is still open. 
 - "resolved" - The comment has been resolved by one of its replies. */
-  String status;
+  core.String status;
 
   /** Create new Comment from JSON data */
-  Comment.fromJson(Map json) {
+  Comment.fromJson(core.Map json) {
     if (json.containsKey("anchor")) {
       anchor = json["anchor"];
     }
@@ -1174,8 +1174,8 @@ class Comment {
   }
 
   /** Create JSON Object for Comment */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (anchor != null) {
       output["anchor"] = anchor;
@@ -1214,7 +1214,7 @@ class Comment {
       output["modifiedDate"] = modifiedDate;
     }
     if (replies != null) {
-      output["replies"] = new List();
+      output["replies"] = new core.List();
       replies.forEach((item) {
         output["replies"].add(item.toJson());
       });
@@ -1230,7 +1230,7 @@ class Comment {
   }
 
   /** Return String representation of Comment */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1238,13 +1238,13 @@ class Comment {
 class CommentContext {
 
   /** The MIME type of the context snippet. */
-  String type;
+  core.String type;
 
   /** Data representation of the segment of the file being commented on. In the case of a text file for example, this would be the actual text that the comment is about. */
-  String value;
+  core.String value;
 
   /** Create new CommentContext from JSON data */
-  CommentContext.fromJson(Map json) {
+  CommentContext.fromJson(core.Map json) {
     if (json.containsKey("type")) {
       type = json["type"];
     }
@@ -1254,8 +1254,8 @@ class CommentContext {
   }
 
   /** Create JSON Object for CommentContext */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (type != null) {
       output["type"] = type;
@@ -1268,7 +1268,7 @@ class CommentContext {
   }
 
   /** Return String representation of CommentContext */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1276,16 +1276,16 @@ class CommentContext {
 class CommentList {
 
   /** List of comments. */
-  List<Comment> items;
+  core.List<Comment> items;
 
   /** This is always drive#commentList. */
-  String kind;
+  core.String kind;
 
   /** The token to use to request the next page of results. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** Create new CommentList from JSON data */
-  CommentList.fromJson(Map json) {
+  CommentList.fromJson(core.Map json) {
     if (json.containsKey("items")) {
       items = [];
       json["items"].forEach((item) {
@@ -1301,11 +1301,11 @@ class CommentList {
   }
 
   /** Create JSON Object for CommentList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -1321,7 +1321,7 @@ class CommentList {
   }
 
   /** Return String representation of CommentList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1332,33 +1332,33 @@ class CommentReply {
   User author;
 
   /** The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen). */
-  String content;
+  core.String content;
 
   /** The date when this reply was first created. */
-  String createdDate;
+  core.String createdDate;
 
   /** Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed. */
-  bool deleted;
+  core.bool deleted;
 
   /** HTML formatted content for this reply. */
-  String htmlContent;
+  core.String htmlContent;
 
   /** This is always drive#commentReply. */
-  String kind;
+  core.String kind;
 
   /** The date when this reply was last modified. */
-  String modifiedDate;
+  core.String modifiedDate;
 
   /** The ID of the reply. */
-  String replyId;
+  core.String replyId;
 
   /** The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
 - "resolve" - To resolve a comment. 
 - "reopen" - To reopen (un-resolve) a comment. */
-  String verb;
+  core.String verb;
 
   /** Create new CommentReply from JSON data */
-  CommentReply.fromJson(Map json) {
+  CommentReply.fromJson(core.Map json) {
     if (json.containsKey("author")) {
       author = new User.fromJson(json["author"]);
     }
@@ -1389,8 +1389,8 @@ class CommentReply {
   }
 
   /** Create JSON Object for CommentReply */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (author != null) {
       output["author"] = author.toJson();
@@ -1424,7 +1424,7 @@ class CommentReply {
   }
 
   /** Return String representation of CommentReply */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1432,16 +1432,16 @@ class CommentReply {
 class CommentReplyList {
 
   /** List of reply. */
-  List<CommentReply> items;
+  core.List<CommentReply> items;
 
   /** This is always drive#commentReplyList. */
-  String kind;
+  core.String kind;
 
   /** The token to use to request the next page of results. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** Create new CommentReplyList from JSON data */
-  CommentReplyList.fromJson(Map json) {
+  CommentReplyList.fromJson(core.Map json) {
     if (json.containsKey("items")) {
       items = [];
       json["items"].forEach((item) {
@@ -1457,11 +1457,11 @@ class CommentReplyList {
   }
 
   /** Create JSON Object for CommentReplyList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -1477,7 +1477,7 @@ class CommentReplyList {
   }
 
   /** Return String representation of CommentReplyList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1485,43 +1485,46 @@ class CommentReplyList {
 class File {
 
   /** A link for opening the file in using a relevant Google editor or viewer. */
-  String alternateLink;
+  core.String alternateLink;
+
+  /** Whether this file is in the appdata folder. */
+  core.bool appDataContents;
 
   /** Create time for this file (formatted ISO8601 timestamp). */
-  String createdDate;
+  core.String createdDate;
 
   /** A short description of the file. */
-  String description;
+  core.String description;
 
   /** Short lived download URL for the file. This is only populated for files with content stored in Drive. */
-  String downloadUrl;
+  core.String downloadUrl;
 
   /** Whether the file can be edited by the current user. */
-  bool editable;
+  core.bool editable;
 
   /** A link for embedding the file. */
-  String embedLink;
+  core.String embedLink;
 
   /** ETag of the file. */
-  String etag;
+  core.String etag;
 
   /** Whether this file has been explicitly trashed, as opposed to recursively trashed. This will only be populated if the file is trashed. */
-  bool explicitlyTrashed;
+  core.bool explicitlyTrashed;
 
   /** Links for exporting Google Docs to specific formats. */
   FileExportLinks exportLinks;
 
   /** The file extension used when downloading this file. This field is read only. To set the extension, include it in the title when creating the file. This is only populated for files with content stored in Drive. */
-  String fileExtension;
+  core.String fileExtension;
 
   /** The size of the file in bytes. This is only populated for files with content stored in Drive. */
-  String fileSize;
+  core.String fileSize;
 
   /** A link to the file's icon. */
-  String iconLink;
+  core.String iconLink;
 
   /** The ID of the file. */
-  String id;
+  core.String id;
 
   /** Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content. */
   FileImageMediaMetadata imageMediaMetadata;
@@ -1530,7 +1533,7 @@ class File {
   FileIndexableText indexableText;
 
   /** The type of file. This is always drive#file. */
-  String kind;
+  core.String kind;
 
   /** A group of labels for the file. */
   FileLabels labels;
@@ -1539,73 +1542,76 @@ class File {
   User lastModifyingUser;
 
   /** Name of the last user to modify this file. */
-  String lastModifyingUserName;
+  core.String lastModifyingUserName;
 
   /** Last time this file was viewed by the user (formatted RFC 3339 timestamp). */
-  String lastViewedByMeDate;
+  core.String lastViewedByMeDate;
 
   /** An MD5 checksum for the content of this file. This is populated only for files with content stored in Drive. */
-  String md5Checksum;
+  core.String md5Checksum;
 
   /** The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type. */
-  String mimeType;
+  core.String mimeType;
 
   /** Last time this file was modified by the user (formatted RFC 3339 timestamp). Note that setting modifiedDate will also update the modifiedByMe date for the user which set the date. */
-  String modifiedByMeDate;
+  core.String modifiedByMeDate;
 
   /** Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set. */
-  String modifiedDate;
+  core.String modifiedDate;
 
   /** The original filename if the file was uploaded manually, or the original title if the file was inserted through the API. Note that renames of the title will not change the original filename. This will only be populated on files with content stored in Drive. */
-  String originalFilename;
+  core.String originalFilename;
 
   /** Name(s) of the owner(s) of this file. */
-  List<String> ownerNames;
+  core.List<core.String> ownerNames;
 
   /** The owner(s) of this file. */
-  List<User> owners;
+  core.List<User> owners;
 
   /** Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
-  List<ParentReference> parents;
+  core.List<ParentReference> parents;
 
   /** The number of quota bytes used by this file. */
-  String quotaBytesUsed;
+  core.String quotaBytesUsed;
 
   /** A link back to this file. */
-  String selfLink;
+  core.String selfLink;
 
   /** Whether the file has been shared. */
-  bool shared;
+  core.bool shared;
 
   /** Time at which this file was shared with the user (formatted RFC 3339 timestamp). */
-  String sharedWithMeDate;
+  core.String sharedWithMeDate;
 
   /** Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google. */
   FileThumbnail thumbnail;
 
   /** A link to the file's thumbnail. */
-  String thumbnailLink;
+  core.String thumbnailLink;
 
   /** The title of this file. */
-  String title;
+  core.String title;
 
   /** The permissions for the authenticated user on this file. */
   Permission userPermission;
 
   /** A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials. */
-  String webContentLink;
+  core.String webContentLink;
 
   /** A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive's Website Hosting. */
-  String webViewLink;
+  core.String webViewLink;
 
   /** Whether writers can share the document with other users. */
-  bool writersCanShare;
+  core.bool writersCanShare;
 
   /** Create new File from JSON data */
-  File.fromJson(Map json) {
+  File.fromJson(core.Map json) {
     if (json.containsKey("alternateLink")) {
       alternateLink = json["alternateLink"];
+    }
+    if (json.containsKey("appDataContents")) {
+      appDataContents = json["appDataContents"];
     }
     if (json.containsKey("createdDate")) {
       createdDate = json["createdDate"];
@@ -1733,11 +1739,14 @@ Setting this field will put the file in all of the provided folders. On insert, 
   }
 
   /** Create JSON Object for File */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (alternateLink != null) {
       output["alternateLink"] = alternateLink;
+    }
+    if (appDataContents != null) {
+      output["appDataContents"] = appDataContents;
     }
     if (createdDate != null) {
       output["createdDate"] = createdDate;
@@ -1812,19 +1821,19 @@ Setting this field will put the file in all of the provided folders. On insert, 
       output["originalFilename"] = originalFilename;
     }
     if (ownerNames != null) {
-      output["ownerNames"] = new List();
+      output["ownerNames"] = new core.List();
       ownerNames.forEach((item) {
         output["ownerNames"].add(item);
       });
     }
     if (owners != null) {
-      output["owners"] = new List();
+      output["owners"] = new core.List();
       owners.forEach((item) {
         output["owners"].add(item.toJson());
       });
     }
     if (parents != null) {
-      output["parents"] = new List();
+      output["parents"] = new core.List();
       parents.forEach((item) {
         output["parents"].add(item.toJson());
       });
@@ -1867,7 +1876,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
   }
 
   /** Return String representation of File */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1875,19 +1884,19 @@ Setting this field will put the file in all of the provided folders. On insert, 
 class FileExportLinks {
 
   /** Create new FileExportLinks from JSON data */
-  FileExportLinks.fromJson(Map json) {
+  FileExportLinks.fromJson(core.Map json) {
   }
 
   /** Create JSON Object for FileExportLinks */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
 
     return output;
   }
 
   /** Return String representation of FileExportLinks */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1895,13 +1904,13 @@ class FileExportLinks {
 class FileThumbnail {
 
   /** The URL-safe Base64 encoded bytes of the thumbnail image. */
-  String image;
+  core.String image;
 
   /** The MIME type of the thumbnail. */
-  String mimeType;
+  core.String mimeType;
 
   /** Create new FileThumbnail from JSON data */
-  FileThumbnail.fromJson(Map json) {
+  FileThumbnail.fromJson(core.Map json) {
     if (json.containsKey("image")) {
       image = json["image"];
     }
@@ -1911,8 +1920,8 @@ class FileThumbnail {
   }
 
   /** Create JSON Object for FileThumbnail */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (image != null) {
       output["image"] = image;
@@ -1925,7 +1934,7 @@ class FileThumbnail {
   }
 
   /** Return String representation of FileThumbnail */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1933,22 +1942,22 @@ class FileThumbnail {
 class FileLabels {
 
   /** Whether this file is hidden from the user. */
-  bool hidden;
+  core.bool hidden;
 
   /** Whether viewers are prevented from downloading this file. */
-  bool restricted;
+  core.bool restricted;
 
   /** Whether this file is starred by the user. */
-  bool starred;
+  core.bool starred;
 
   /** Whether this file has been trashed. */
-  bool trashed;
+  core.bool trashed;
 
   /** Whether this file has been viewed by this user. */
-  bool viewed;
+  core.bool viewed;
 
   /** Create new FileLabels from JSON data */
-  FileLabels.fromJson(Map json) {
+  FileLabels.fromJson(core.Map json) {
     if (json.containsKey("hidden")) {
       hidden = json["hidden"];
     }
@@ -1967,8 +1976,8 @@ class FileLabels {
   }
 
   /** Create JSON Object for FileLabels */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (hidden != null) {
       output["hidden"] = hidden;
@@ -1990,7 +1999,7 @@ class FileLabels {
   }
 
   /** Return String representation of FileLabels */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1998,18 +2007,18 @@ class FileLabels {
 class FileIndexableText {
 
   /** The text to be indexed for this file. */
-  String text;
+  core.String text;
 
   /** Create new FileIndexableText from JSON data */
-  FileIndexableText.fromJson(Map json) {
+  FileIndexableText.fromJson(core.Map json) {
     if (json.containsKey("text")) {
       text = json["text"];
     }
   }
 
   /** Create JSON Object for FileIndexableText */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (text != null) {
       output["text"] = text;
@@ -2019,7 +2028,7 @@ class FileIndexableText {
   }
 
   /** Return String representation of FileIndexableText */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2027,70 +2036,70 @@ class FileIndexableText {
 class FileImageMediaMetadata {
 
   /** The aperture used to create the photo (f-number). */
-  num aperture;
+  core.num aperture;
 
   /** The make of the camera used to create the photo. */
-  String cameraMake;
+  core.String cameraMake;
 
   /** The model of the camera used to create the photo. */
-  String cameraModel;
+  core.String cameraModel;
 
   /** The color space of the photo. */
-  String colorSpace;
+  core.String colorSpace;
 
   /** The date and time the photo was taken (EXIF format timestamp). */
-  String date;
+  core.String date;
 
   /** The exposure bias of the photo (APEX value). */
-  num exposureBias;
+  core.num exposureBias;
 
   /** The exposure mode used to create the photo. */
-  String exposureMode;
+  core.String exposureMode;
 
   /** The length of the exposure, in seconds. */
-  num exposureTime;
+  core.num exposureTime;
 
   /** Whether a flash was used to create the photo. */
-  bool flashUsed;
+  core.bool flashUsed;
 
   /** The focal length used to create the photo, in millimeters. */
-  num focalLength;
+  core.num focalLength;
 
   /** The height of the image in pixels. */
-  int height;
+  core.int height;
 
   /** The ISO speed used to create the photo. */
-  int isoSpeed;
+  core.int isoSpeed;
 
   /** The lens used to create the photo. */
-  String lens;
+  core.String lens;
 
   /** Geographic location information stored in the image. */
   FileImageMediaMetadataLocation location;
 
   /** The smallest f-number of the lens at the focal length used to create the photo (APEX value). */
-  num maxApertureValue;
+  core.num maxApertureValue;
 
   /** The metering mode used to create the photo. */
-  String meteringMode;
+  core.String meteringMode;
 
   /** The rotation in clockwise degrees from the image's original orientation. */
-  int rotation;
+  core.int rotation;
 
   /** The type of sensor used to create the photo. */
-  String sensor;
+  core.String sensor;
 
   /** The distance to the subject of the photo, in meters. */
-  int subjectDistance;
+  core.int subjectDistance;
 
   /** The white balance mode used to create the photo. */
-  String whiteBalance;
+  core.String whiteBalance;
 
   /** The width of the image in pixels. */
-  int width;
+  core.int width;
 
   /** Create new FileImageMediaMetadata from JSON data */
-  FileImageMediaMetadata.fromJson(Map json) {
+  FileImageMediaMetadata.fromJson(core.Map json) {
     if (json.containsKey("aperture")) {
       aperture = json["aperture"];
     }
@@ -2157,8 +2166,8 @@ class FileImageMediaMetadata {
   }
 
   /** Create JSON Object for FileImageMediaMetadata */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (aperture != null) {
       output["aperture"] = aperture;
@@ -2228,7 +2237,7 @@ class FileImageMediaMetadata {
   }
 
   /** Return String representation of FileImageMediaMetadata */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2236,16 +2245,16 @@ class FileImageMediaMetadata {
 class FileImageMediaMetadataLocation {
 
   /** The altitude stored in the image. */
-  num altitude;
+  core.num altitude;
 
   /** The latitude stored in the image. */
-  num latitude;
+  core.num latitude;
 
   /** The longitude stored in the image. */
-  num longitude;
+  core.num longitude;
 
   /** Create new FileImageMediaMetadataLocation from JSON data */
-  FileImageMediaMetadataLocation.fromJson(Map json) {
+  FileImageMediaMetadataLocation.fromJson(core.Map json) {
     if (json.containsKey("altitude")) {
       altitude = json["altitude"];
     }
@@ -2258,8 +2267,8 @@ class FileImageMediaMetadataLocation {
   }
 
   /** Create JSON Object for FileImageMediaMetadataLocation */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (altitude != null) {
       output["altitude"] = altitude;
@@ -2275,7 +2284,7 @@ class FileImageMediaMetadataLocation {
   }
 
   /** Return String representation of FileImageMediaMetadataLocation */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2283,25 +2292,25 @@ class FileImageMediaMetadataLocation {
 class FileList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of files. */
-  List<File> items;
+  core.List<File> items;
 
   /** This is always drive#fileList. */
-  String kind;
+  core.String kind;
 
   /** A link to the next page of files. */
-  String nextLink;
+  core.String nextLink;
 
   /** The page token for the next page of files. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new FileList from JSON data */
-  FileList.fromJson(Map json) {
+  FileList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2326,14 +2335,14 @@ class FileList {
   }
 
   /** Create JSON Object for FileList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2355,7 +2364,7 @@ class FileList {
   }
 
   /** Return String representation of FileList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2363,19 +2372,19 @@ class FileList {
 class ParentList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of parents. */
-  List<ParentReference> items;
+  core.List<ParentReference> items;
 
   /** This is always drive#parentList. */
-  String kind;
+  core.String kind;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new ParentList from JSON data */
-  ParentList.fromJson(Map json) {
+  ParentList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2394,14 +2403,14 @@ class ParentList {
   }
 
   /** Create JSON Object for ParentList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2417,7 +2426,7 @@ class ParentList {
   }
 
   /** Return String representation of ParentList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2425,22 +2434,22 @@ class ParentList {
 class ParentReference {
 
   /** The ID of the parent. */
-  String id;
+  core.String id;
 
   /** Whether or not the parent is the root folder. */
-  bool isRoot;
+  core.bool isRoot;
 
   /** This is always drive#parentReference. */
-  String kind;
+  core.String kind;
 
   /** A link to the parent. */
-  String parentLink;
+  core.String parentLink;
 
   /** A link back to this reference. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new ParentReference from JSON data */
-  ParentReference.fromJson(Map json) {
+  ParentReference.fromJson(core.Map json) {
     if (json.containsKey("id")) {
       id = json["id"];
     }
@@ -2459,8 +2468,8 @@ class ParentReference {
   }
 
   /** Create JSON Object for ParentReference */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (id != null) {
       output["id"] = id;
@@ -2482,7 +2491,7 @@ class ParentReference {
   }
 
   /** Return String representation of ParentReference */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2490,50 +2499,50 @@ class ParentReference {
 class Permission {
 
   /** Additional roles for this user. Only commenter is currently allowed. */
-  List<String> additionalRoles;
+  core.List<core.String> additionalRoles;
 
   /** The authkey parameter required for this permission. */
-  String authKey;
+  core.String authKey;
 
   /** The ETag of the permission. */
-  String etag;
+  core.String etag;
 
   /** The ID of the permission. */
-  String id;
+  core.String id;
 
   /** This is always drive#permission. */
-  String kind;
+  core.String kind;
 
   /** The name for this permission. */
-  String name;
+  core.String name;
 
   /** A link to the profile photo, if available. */
-  String photoLink;
+  core.String photoLink;
 
   /** The primary role for this user. Allowed values are:  
 - owner 
 - reader 
 - writer */
-  String role;
+  core.String role;
 
   /** A link back to this permission. */
-  String selfLink;
+  core.String selfLink;
 
   /** The account type. Allowed values are:  
 - user 
 - group 
 - domain 
 - anyone */
-  String type;
+  core.String type;
 
   /** The email address or domain name for the entity. This is not populated in responses. */
-  String value;
+  core.String value;
 
   /** Whether the link is required for this permission. */
-  bool withLink;
+  core.bool withLink;
 
   /** Create new Permission from JSON data */
-  Permission.fromJson(Map json) {
+  Permission.fromJson(core.Map json) {
     if (json.containsKey("additionalRoles")) {
       additionalRoles = [];
       json["additionalRoles"].forEach((item) {
@@ -2576,11 +2585,11 @@ class Permission {
   }
 
   /** Create JSON Object for Permission */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (additionalRoles != null) {
-      output["additionalRoles"] = new List();
+      output["additionalRoles"] = new core.List();
       additionalRoles.forEach((item) {
         output["additionalRoles"].add(item);
       });
@@ -2623,7 +2632,7 @@ class Permission {
   }
 
   /** Return String representation of Permission */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2631,19 +2640,19 @@ class Permission {
 class PermissionList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of permissions. */
-  List<Permission> items;
+  core.List<Permission> items;
 
   /** This is always drive#permissionList. */
-  String kind;
+  core.String kind;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new PermissionList from JSON data */
-  PermissionList.fromJson(Map json) {
+  PermissionList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2662,14 +2671,14 @@ class PermissionList {
   }
 
   /** Create JSON Object for PermissionList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2685,7 +2694,143 @@ class PermissionList {
   }
 
   /** Return String representation of PermissionList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A key-value pair that is either public or private to an application. */
+class Property {
+
+  /** ETag of the property. */
+  core.String etag;
+
+  /** The key of this property. */
+  core.String key;
+
+  /** This is always drive#property. */
+  core.String kind;
+
+  /** The link back to this property. */
+  core.String selfLink;
+
+  /** The value of this property. */
+  core.String value;
+
+  /** The visibility of this property. */
+  core.String visibility;
+
+  /** Create new Property from JSON data */
+  Property.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("key")) {
+      key = json["key"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("selfLink")) {
+      selfLink = json["selfLink"];
+    }
+    if (json.containsKey("value")) {
+      value = json["value"];
+    }
+    if (json.containsKey("visibility")) {
+      visibility = json["visibility"];
+    }
+  }
+
+  /** Create JSON Object for Property */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (key != null) {
+      output["key"] = key;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (selfLink != null) {
+      output["selfLink"] = selfLink;
+    }
+    if (value != null) {
+      output["value"] = value;
+    }
+    if (visibility != null) {
+      output["visibility"] = visibility;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of Property */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A collection of properties, key-value pairs that are either public or private to an application. */
+class PropertyList {
+
+  /** The ETag of the list. */
+  core.String etag;
+
+  /** The list of properties. */
+  core.List<Property> items;
+
+  /** This is always drive#propertyList. */
+  core.String kind;
+
+  /** The link back to this list. */
+  core.String selfLink;
+
+  /** Create new PropertyList from JSON data */
+  PropertyList.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("items")) {
+      items = [];
+      json["items"].forEach((item) {
+        items.add(new Property.fromJson(item));
+      });
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("selfLink")) {
+      selfLink = json["selfLink"];
+    }
+  }
+
+  /** Create JSON Object for PropertyList */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (items != null) {
+      output["items"] = new core.List();
+      items.forEach((item) {
+        output["items"].add(item.toJson());
+      });
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (selfLink != null) {
+      output["selfLink"] = selfLink;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PropertyList */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2693,61 +2838,61 @@ class PermissionList {
 class Revision {
 
   /** Short term download URL for the file. This will only be populated on files with content stored in Drive. */
-  String downloadUrl;
+  core.String downloadUrl;
 
   /** The ETag of the revision. */
-  String etag;
+  core.String etag;
 
   /** Links for exporting Google Docs to specific formats. */
   RevisionExportLinks exportLinks;
 
   /** The size of the revision in bytes. This will only be populated on files with content stored in Drive. */
-  String fileSize;
+  core.String fileSize;
 
   /** The ID of the revision. */
-  String id;
+  core.String id;
 
   /** This is always drive#revision. */
-  String kind;
+  core.String kind;
 
   /** The last user to modify this revision. */
   User lastModifyingUser;
 
   /** Name of the last user to modify this revision. */
-  String lastModifyingUserName;
+  core.String lastModifyingUserName;
 
   /** An MD5 checksum for the content of this revision. This will only be populated on files with content stored in Drive. */
-  String md5Checksum;
+  core.String md5Checksum;
 
   /** The MIME type of the revision. */
-  String mimeType;
+  core.String mimeType;
 
   /** Last time this revision was modified (formatted RFC 3339 timestamp). */
-  String modifiedDate;
+  core.String modifiedDate;
 
   /** The original filename when this revision was created. This will only be populated on files with content stored in Drive. */
-  String originalFilename;
+  core.String originalFilename;
 
   /** Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. */
-  bool pinned;
+  core.bool pinned;
 
   /** Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs. */
-  bool publishAuto;
+  core.bool publishAuto;
 
   /** Whether this revision is published. This is only populated and can only be modified for Google Docs. */
-  bool published;
+  core.bool published;
 
   /** A link to the published revision. */
-  String publishedLink;
+  core.String publishedLink;
 
   /** Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs. */
-  bool publishedOutsideDomain;
+  core.bool publishedOutsideDomain;
 
   /** A link back to this revision. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new Revision from JSON data */
-  Revision.fromJson(Map json) {
+  Revision.fromJson(core.Map json) {
     if (json.containsKey("downloadUrl")) {
       downloadUrl = json["downloadUrl"];
     }
@@ -2805,8 +2950,8 @@ class Revision {
   }
 
   /** Create JSON Object for Revision */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (downloadUrl != null) {
       output["downloadUrl"] = downloadUrl;
@@ -2867,7 +3012,7 @@ class Revision {
   }
 
   /** Return String representation of Revision */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2875,19 +3020,19 @@ class Revision {
 class RevisionExportLinks {
 
   /** Create new RevisionExportLinks from JSON data */
-  RevisionExportLinks.fromJson(Map json) {
+  RevisionExportLinks.fromJson(core.Map json) {
   }
 
   /** Create JSON Object for RevisionExportLinks */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
 
     return output;
   }
 
   /** Return String representation of RevisionExportLinks */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2895,19 +3040,19 @@ class RevisionExportLinks {
 class RevisionList {
 
   /** The ETag of the list. */
-  String etag;
+  core.String etag;
 
   /** The actual list of revisions. */
-  List<Revision> items;
+  core.List<Revision> items;
 
   /** This is always drive#revisionList. */
-  String kind;
+  core.String kind;
 
   /** A link back to this list. */
-  String selfLink;
+  core.String selfLink;
 
   /** Create new RevisionList from JSON data */
-  RevisionList.fromJson(Map json) {
+  RevisionList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2926,14 +3071,14 @@ class RevisionList {
   }
 
   /** Create JSON Object for RevisionList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2949,7 +3094,7 @@ class RevisionList {
   }
 
   /** Return String representation of RevisionList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2957,22 +3102,22 @@ class RevisionList {
 class User {
 
   /** A plain text displayable name for this user. */
-  String displayName;
+  core.String displayName;
 
   /** Whether this user is the same as the authenticated user for whom the request was made. */
-  bool isAuthenticatedUser;
+  core.bool isAuthenticatedUser;
 
   /** This is always drive#user. */
-  String kind;
+  core.String kind;
 
   /** The user's ID as visible in the permissions collection. */
-  String permissionId;
+  core.String permissionId;
 
   /** The user's profile picture. */
   UserPicture picture;
 
   /** Create new User from JSON data */
-  User.fromJson(Map json) {
+  User.fromJson(core.Map json) {
     if (json.containsKey("displayName")) {
       displayName = json["displayName"];
     }
@@ -2991,8 +3136,8 @@ class User {
   }
 
   /** Create JSON Object for User */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (displayName != null) {
       output["displayName"] = displayName;
@@ -3014,7 +3159,7 @@ class User {
   }
 
   /** Return String representation of User */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3022,18 +3167,18 @@ class User {
 class UserPicture {
 
   /** A URL that points to a profile picture of this user. */
-  String url;
+  core.String url;
 
   /** Create new UserPicture from JSON data */
-  UserPicture.fromJson(Map json) {
+  UserPicture.fromJson(core.Map json) {
     if (json.containsKey("url")) {
       url = json["url"];
     }
   }
 
   /** Create JSON Object for UserPicture */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (url != null) {
       output["url"] = url;
@@ -3043,7 +3188,7 @@ class UserPicture {
   }
 
   /** Return String representation of UserPicture */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
