@@ -4,28 +4,28 @@ part of drive_v2_api_browser;
 /** The API to interact with Drive. */
 class Drive extends BrowserClient {
 
-  AboutResource _about;
-  AboutResource get about => _about;
-  AppsResource _apps;
-  AppsResource get apps => _apps;
-  ChangesResource _changes;
-  ChangesResource get changes => _changes;
-  ChildrenResource _children;
-  ChildrenResource get children => _children;
-  CommentsResource _comments;
-  CommentsResource get comments => _comments;
-  FilesResource _files;
-  FilesResource get files => _files;
-  ParentsResource _parents;
-  ParentsResource get parents => _parents;
-  PermissionsResource _permissions;
-  PermissionsResource get permissions => _permissions;
-  PropertiesResource _properties;
-  PropertiesResource get properties => _properties;
-  RepliesResource _replies;
-  RepliesResource get replies => _replies;
-  RevisionsResource _revisions;
-  RevisionsResource get revisions => _revisions;
+  AboutResource_ _about;
+  AboutResource_ get about => _about;
+  AppsResource_ _apps;
+  AppsResource_ get apps => _apps;
+  ChangesResource_ _changes;
+  ChangesResource_ get changes => _changes;
+  ChildrenResource_ _children;
+  ChildrenResource_ get children => _children;
+  CommentsResource_ _comments;
+  CommentsResource_ get comments => _comments;
+  FilesResource_ _files;
+  FilesResource_ get files => _files;
+  ParentsResource_ _parents;
+  ParentsResource_ get parents => _parents;
+  PermissionsResource_ _permissions;
+  PermissionsResource_ get permissions => _permissions;
+  PropertiesResource_ _properties;
+  PropertiesResource_ get properties => _properties;
+  RepliesResource_ _replies;
+  RepliesResource_ get replies => _replies;
+  RevisionsResource_ _revisions;
+  RevisionsResource_ get revisions => _revisions;
 
   /** OAuth Scope2: View and manage the files and documents in your Google Drive */
   static const core.String DRIVE_SCOPE = "https://www.googleapis.com/auth/drive";
@@ -97,16 +97,16 @@ class Drive extends BrowserClient {
   Drive([oauth.OAuth2 auth]) : super(auth) {
     basePath = "/drive/v2/";
     rootUrl = "https://www.googleapis.com:443/";
-    _about = new AboutResource(this);
-    _apps = new AppsResource(this);
-    _changes = new ChangesResource(this);
-    _children = new ChildrenResource(this);
-    _comments = new CommentsResource(this);
-    _files = new FilesResource(this);
-    _parents = new ParentsResource(this);
-    _permissions = new PermissionsResource(this);
-    _properties = new PropertiesResource(this);
-    _replies = new RepliesResource(this);
-    _revisions = new RevisionsResource(this);
+    _about = new AboutResource_(this);
+    _apps = new AppsResource_(this);
+    _changes = new ChangesResource_(this);
+    _children = new ChildrenResource_(this);
+    _comments = new CommentsResource_(this);
+    _files = new FilesResource_(this);
+    _parents = new ParentsResource_(this);
+    _permissions = new PermissionsResource_(this);
+    _properties = new PropertiesResource_(this);
+    _replies = new RepliesResource_(this);
+    _revisions = new RevisionsResource_(this);
   }
 }

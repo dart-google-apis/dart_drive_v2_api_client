@@ -494,6 +494,9 @@ class App {
   /** This is always drive#app. */
   core.String kind;
 
+  /** A long description of the app. */
+  core.String longDescription;
+
   /** The name of the app. */
   core.String name;
 
@@ -514,6 +517,9 @@ class App {
 
   /** The list of secondary mime types. */
   core.List<core.String> secondaryMimeTypes;
+
+  /** A short description of the app. */
+  core.String shortDescription;
 
   /** Whether this app supports creating new objects. */
   core.bool supportsCreate;
@@ -543,6 +549,9 @@ class App {
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
+    }
+    if (json.containsKey("longDescription")) {
+      longDescription = json["longDescription"];
     }
     if (json.containsKey("name")) {
       name = json["name"];
@@ -577,6 +586,9 @@ class App {
         secondaryMimeTypes.add(item);
       });
     }
+    if (json.containsKey("shortDescription")) {
+      shortDescription = json["shortDescription"];
+    }
     if (json.containsKey("supportsCreate")) {
       supportsCreate = json["supportsCreate"];
     }
@@ -610,6 +622,9 @@ class App {
     if (kind != null) {
       output["kind"] = kind;
     }
+    if (longDescription != null) {
+      output["longDescription"] = longDescription;
+    }
     if (name != null) {
       output["name"] = name;
     }
@@ -642,6 +657,9 @@ class App {
       secondaryMimeTypes.forEach((item) {
         output["secondaryMimeTypes"].add(item);
       });
+    }
+    if (shortDescription != null) {
+      output["shortDescription"] = shortDescription;
     }
     if (supportsCreate != null) {
       output["supportsCreate"] = supportsCreate;
@@ -1281,8 +1299,14 @@ class CommentList {
   /** This is always drive#commentList. */
   core.String kind;
 
+  /** A link to the next page of comments. */
+  core.String nextLink;
+
   /** The token to use to request the next page of results. */
   core.String nextPageToken;
+
+  /** A link back to this list. */
+  core.String selfLink;
 
   /** Create new CommentList from JSON data */
   CommentList.fromJson(core.Map json) {
@@ -1295,8 +1319,14 @@ class CommentList {
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
+    if (json.containsKey("nextLink")) {
+      nextLink = json["nextLink"];
+    }
     if (json.containsKey("nextPageToken")) {
       nextPageToken = json["nextPageToken"];
+    }
+    if (json.containsKey("selfLink")) {
+      selfLink = json["selfLink"];
     }
   }
 
@@ -1313,8 +1343,14 @@ class CommentList {
     if (kind != null) {
       output["kind"] = kind;
     }
+    if (nextLink != null) {
+      output["nextLink"] = nextLink;
+    }
     if (nextPageToken != null) {
       output["nextPageToken"] = nextPageToken;
+    }
+    if (selfLink != null) {
+      output["selfLink"] = selfLink;
     }
 
     return output;
@@ -1437,8 +1473,14 @@ class CommentReplyList {
   /** This is always drive#commentReplyList. */
   core.String kind;
 
+  /** A link to the next page of replies. */
+  core.String nextLink;
+
   /** The token to use to request the next page of results. */
   core.String nextPageToken;
+
+  /** A link back to this list. */
+  core.String selfLink;
 
   /** Create new CommentReplyList from JSON data */
   CommentReplyList.fromJson(core.Map json) {
@@ -1451,8 +1493,14 @@ class CommentReplyList {
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
+    if (json.containsKey("nextLink")) {
+      nextLink = json["nextLink"];
+    }
     if (json.containsKey("nextPageToken")) {
       nextPageToken = json["nextPageToken"];
+    }
+    if (json.containsKey("selfLink")) {
+      selfLink = json["selfLink"];
     }
   }
 
@@ -1469,8 +1517,14 @@ class CommentReplyList {
     if (kind != null) {
       output["kind"] = kind;
     }
+    if (nextLink != null) {
+      output["nextLink"] = nextLink;
+    }
     if (nextPageToken != null) {
       output["nextPageToken"] = nextPageToken;
+    }
+    if (selfLink != null) {
+      output["selfLink"] = selfLink;
     }
 
     return output;
@@ -1492,6 +1546,9 @@ class File {
 
   /** Create time for this file (formatted ISO8601 timestamp). */
   core.String createdDate;
+
+  /** A link to open this file with the user's default app for this file. Only populated when the drive.apps.readonly scope is used. */
+  core.String defaultOpenWithLink;
 
   /** A short description of the file. */
   core.String description;
@@ -1559,6 +1616,9 @@ class File {
   /** Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set. */
   core.String modifiedDate;
 
+  /** A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used. */
+  FileOpenWithLinks openWithLinks;
+
   /** The original filename if the file was uploaded manually, or the original title if the file was inserted through the API. Note that renames of the title will not change the original filename. This will only be populated on files with content stored in Drive. */
   core.String originalFilename;
 
@@ -1615,6 +1675,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (json.containsKey("createdDate")) {
       createdDate = json["createdDate"];
+    }
+    if (json.containsKey("defaultOpenWithLink")) {
+      defaultOpenWithLink = json["defaultOpenWithLink"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
@@ -1681,6 +1744,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (json.containsKey("modifiedDate")) {
       modifiedDate = json["modifiedDate"];
+    }
+    if (json.containsKey("openWithLinks")) {
+      openWithLinks = new FileOpenWithLinks.fromJson(json["openWithLinks"]);
     }
     if (json.containsKey("originalFilename")) {
       originalFilename = json["originalFilename"];
@@ -1751,6 +1817,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (createdDate != null) {
       output["createdDate"] = createdDate;
     }
+    if (defaultOpenWithLink != null) {
+      output["defaultOpenWithLink"] = defaultOpenWithLink;
+    }
     if (description != null) {
       output["description"] = description;
     }
@@ -1817,6 +1886,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (modifiedDate != null) {
       output["modifiedDate"] = modifiedDate;
     }
+    if (openWithLinks != null) {
+      output["openWithLinks"] = openWithLinks.toJson();
+    }
     if (originalFilename != null) {
       output["originalFilename"] = originalFilename;
     }
@@ -1876,6 +1948,26 @@ Setting this field will put the file in all of the provided folders. On insert, 
   }
 
   /** Return String representation of File */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used. */
+class FileOpenWithLinks {
+
+  /** Create new FileOpenWithLinks from JSON data */
+  FileOpenWithLinks.fromJson(core.Map json) {
+  }
+
+  /** Create JSON Object for FileOpenWithLinks */
+  core.Map toJson() {
+    var output = new core.Map();
+
+
+    return output;
+  }
+
+  /** Return String representation of FileOpenWithLinks */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
