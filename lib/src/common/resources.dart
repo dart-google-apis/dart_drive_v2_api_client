@@ -18,7 +18,7 @@ class AboutResource_ extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<About> get({core.bool includeSubscribed, core.String maxChangeIdCount, core.String startChangeId, core.Map optParams}) {
+  async.Future<About> get({core.bool includeSubscribed, core.int maxChangeIdCount, core.int startChangeId, core.Map optParams}) {
     var completer = new async.Completer();
     var url = "about";
     var urlParams = new core.Map();
@@ -187,7 +187,7 @@ class ChangesResource_ extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<ChangeList> list({core.bool includeDeleted, core.bool includeSubscribed, core.int maxResults, core.String pageToken, core.String startChangeId, core.Map optParams}) {
+  async.Future<ChangeList> list({core.bool includeDeleted, core.bool includeSubscribed, core.int maxResults, core.String pageToken, core.int startChangeId, core.Map optParams}) {
     var completer = new async.Completer();
     var url = "changes";
     var urlParams = new core.Map();

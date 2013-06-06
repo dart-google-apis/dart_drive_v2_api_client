@@ -28,7 +28,7 @@ class About {
   core.String kind;
 
   /** The largest change id. */
-  core.String largestChangeId;
+  core.int largestChangeId;
 
   /** List of max upload sizes for each file type. The most specific type takes precedence. */
   core.List<AboutMaxUploadSizes> maxUploadSizes;
@@ -40,19 +40,19 @@ class About {
   core.String permissionId;
 
   /** The total number of quota bytes. */
-  core.String quotaBytesTotal;
+  core.int quotaBytesTotal;
 
   /** The number of quota bytes used by Google Drive. */
-  core.String quotaBytesUsed;
+  core.int quotaBytesUsed;
 
   /** The number of quota bytes used by all Google apps (Drive, Picasa, etc.). */
-  core.String quotaBytesUsedAggregate;
+  core.int quotaBytesUsedAggregate;
 
   /** The number of quota bytes used by trashed items. */
-  core.String quotaBytesUsedInTrash;
+  core.int quotaBytesUsedInTrash;
 
   /** The number of remaining change ids. */
-  core.String remainingChangeIds;
+  core.int remainingChangeIds;
 
   /** The id of the root folder. */
   core.String rootFolderId;
@@ -233,7 +233,7 @@ class About {
 class AboutMaxUploadSizes {
 
   /** The max upload size for this type. */
-  core.String size;
+  core.int size;
 
   /** The file type. */
   core.String type;
@@ -503,13 +503,19 @@ class App {
   /** The type of object this app creates (e.g. Chart). If empty, the app name should be used instead. */
   core.String objectType;
 
+  /** The template url for opening files with this app. The template will contain {ids} and/or {exportIds} to be replaced by the actual file ids. */
+  core.String openUrlTemplate;
+
   /** The list of primary file extensions. */
   core.List<core.String> primaryFileExtensions;
 
   /** The list of primary mime types. */
   core.List<core.String> primaryMimeTypes;
 
-  /** The product URL. */
+  /** The ID of the product listing for this app. */
+  core.String productId;
+
+  /** A link to the product listing for this app. */
   core.String productUrl;
 
   /** The list of secondary file extensions. */
@@ -526,6 +532,9 @@ class App {
 
   /** Whether this app supports importing Google Docs. */
   core.bool supportsImport;
+
+  /** Whether this app supports opening more than one file. */
+  core.bool supportsMultiOpen;
 
   /** Whether the app is selected as the default handler for the types it supports. */
   core.bool useByDefault;
@@ -559,6 +568,9 @@ class App {
     if (json.containsKey("objectType")) {
       objectType = json["objectType"];
     }
+    if (json.containsKey("openUrlTemplate")) {
+      openUrlTemplate = json["openUrlTemplate"];
+    }
     if (json.containsKey("primaryFileExtensions")) {
       primaryFileExtensions = [];
       json["primaryFileExtensions"].forEach((item) {
@@ -570,6 +582,9 @@ class App {
       json["primaryMimeTypes"].forEach((item) {
         primaryMimeTypes.add(item);
       });
+    }
+    if (json.containsKey("productId")) {
+      productId = json["productId"];
     }
     if (json.containsKey("productUrl")) {
       productUrl = json["productUrl"];
@@ -594,6 +609,9 @@ class App {
     }
     if (json.containsKey("supportsImport")) {
       supportsImport = json["supportsImport"];
+    }
+    if (json.containsKey("supportsMultiOpen")) {
+      supportsMultiOpen = json["supportsMultiOpen"];
     }
     if (json.containsKey("useByDefault")) {
       useByDefault = json["useByDefault"];
@@ -631,6 +649,9 @@ class App {
     if (objectType != null) {
       output["objectType"] = objectType;
     }
+    if (openUrlTemplate != null) {
+      output["openUrlTemplate"] = openUrlTemplate;
+    }
     if (primaryFileExtensions != null) {
       output["primaryFileExtensions"] = new core.List();
       primaryFileExtensions.forEach((item) {
@@ -642,6 +663,9 @@ class App {
       primaryMimeTypes.forEach((item) {
         output["primaryMimeTypes"].add(item);
       });
+    }
+    if (productId != null) {
+      output["productId"] = productId;
     }
     if (productUrl != null) {
       output["productUrl"] = productUrl;
@@ -666,6 +690,9 @@ class App {
     }
     if (supportsImport != null) {
       output["supportsImport"] = supportsImport;
+    }
+    if (supportsMultiOpen != null) {
+      output["supportsMultiOpen"] = supportsMultiOpen;
     }
     if (useByDefault != null) {
       output["useByDefault"] = useByDefault;
@@ -803,7 +830,7 @@ class Change {
   core.String fileId;
 
   /** The ID of the change. */
-  core.String id;
+  core.int id;
 
   /** This is always drive#change. */
   core.String kind;
@@ -877,7 +904,7 @@ class ChangeList {
   core.String kind;
 
   /** The current largest change ID. */
-  core.String largestChangeId;
+  core.int largestChangeId;
 
   /** A link to the next page of changes. */
   core.String nextLink;
@@ -1575,7 +1602,7 @@ class File {
   core.String fileExtension;
 
   /** The size of the file in bytes. This is only populated for files with content stored in Drive. */
-  core.String fileSize;
+  core.int fileSize;
 
   /** A link to the file's icon. */
   core.String iconLink;
@@ -1633,7 +1660,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
   core.List<ParentReference> parents;
 
   /** The number of quota bytes used by this file. */
-  core.String quotaBytesUsed;
+  core.int quotaBytesUsed;
 
   /** A link back to this file. */
   core.String selfLink;
@@ -2939,7 +2966,7 @@ class Revision {
   RevisionExportLinks exportLinks;
 
   /** The size of the revision in bytes. This will only be populated on files with content stored in Drive. */
-  core.String fileSize;
+  core.int fileSize;
 
   /** The ID of the revision. */
   core.String id;

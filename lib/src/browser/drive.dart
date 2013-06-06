@@ -96,7 +96,7 @@ class Drive extends BrowserClient {
 
   Drive([oauth.OAuth2 auth]) : super(auth) {
     basePath = "/drive/v2/";
-    rootUrl = "https://www.googleapis.com:443/";
+    rootUrl = "https://www.googleapis.com/";
     _about = new AboutResource_(this);
     _apps = new AppsResource_(this);
     _changes = new ChangesResource_(this);
