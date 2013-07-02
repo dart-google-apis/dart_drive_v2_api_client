@@ -102,7 +102,11 @@ class About {
       kind = json["kind"];
     }
     if (json.containsKey("largestChangeId")) {
-      largestChangeId = json["largestChangeId"];
+      if(json["largestChangeId"] is core.String){
+        largestChangeId = core.int.parse(json["largestChangeId"]);
+      }else{
+        largestChangeId = json["largestChangeId"];
+      }
     }
     if (json.containsKey("maxUploadSizes")) {
       maxUploadSizes = [];
@@ -117,19 +121,39 @@ class About {
       permissionId = json["permissionId"];
     }
     if (json.containsKey("quotaBytesTotal")) {
-      quotaBytesTotal = json["quotaBytesTotal"];
+      if(json["quotaBytesTotal"] is core.String){
+        quotaBytesTotal = core.int.parse(json["quotaBytesTotal"]);
+      }else{
+        quotaBytesTotal = json["quotaBytesTotal"];
+      }
     }
     if (json.containsKey("quotaBytesUsed")) {
-      quotaBytesUsed = json["quotaBytesUsed"];
+      if(json["quotaBytesUsed"] is core.String){
+        quotaBytesUsed = core.int.parse(json["quotaBytesUsed"]);
+      }else{
+        quotaBytesUsed = json["quotaBytesUsed"];
+      }
     }
     if (json.containsKey("quotaBytesUsedAggregate")) {
-      quotaBytesUsedAggregate = json["quotaBytesUsedAggregate"];
+      if(json["quotaBytesUsedAggregate"] is core.String){
+        quotaBytesUsedAggregate = core.int.parse(json["quotaBytesUsedAggregate"]);
+      }else{
+        quotaBytesUsedAggregate = json["quotaBytesUsedAggregate"];
+      }
     }
     if (json.containsKey("quotaBytesUsedInTrash")) {
-      quotaBytesUsedInTrash = json["quotaBytesUsedInTrash"];
+      if(json["quotaBytesUsedInTrash"] is core.String){
+        quotaBytesUsedInTrash = core.int.parse(json["quotaBytesUsedInTrash"]);
+      }else{
+        quotaBytesUsedInTrash = json["quotaBytesUsedInTrash"];
+      }
     }
     if (json.containsKey("remainingChangeIds")) {
-      remainingChangeIds = json["remainingChangeIds"];
+      if(json["remainingChangeIds"] is core.String){
+        remainingChangeIds = core.int.parse(json["remainingChangeIds"]);
+      }else{
+        remainingChangeIds = json["remainingChangeIds"];
+      }
     }
     if (json.containsKey("rootFolderId")) {
       rootFolderId = json["rootFolderId"];
@@ -241,7 +265,11 @@ class AboutMaxUploadSizes {
   /** Create new AboutMaxUploadSizes from JSON data */
   AboutMaxUploadSizes.fromJson(core.Map json) {
     if (json.containsKey("size")) {
-      size = json["size"];
+      if(json["size"] is core.String){
+        size = core.int.parse(json["size"]);
+      }else{
+        size = json["size"];
+      }
     }
     if (json.containsKey("type")) {
       type = json["type"];
@@ -850,7 +878,11 @@ class Change {
       fileId = json["fileId"];
     }
     if (json.containsKey("id")) {
-      id = json["id"];
+      if(json["id"] is core.String){
+        id = core.int.parse(json["id"]);
+      }else{
+        id = json["id"];
+      }
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -930,7 +962,11 @@ class ChangeList {
       kind = json["kind"];
     }
     if (json.containsKey("largestChangeId")) {
-      largestChangeId = json["largestChangeId"];
+      if(json["largestChangeId"] is core.String){
+        largestChangeId = core.int.parse(json["largestChangeId"]);
+      }else{
+        largestChangeId = json["largestChangeId"];
+      }
     }
     if (json.containsKey("nextLink")) {
       nextLink = json["nextLink"];
@@ -1731,7 +1767,11 @@ Setting this field will put the file in all of the provided folders. On insert, 
       fileExtension = json["fileExtension"];
     }
     if (json.containsKey("fileSize")) {
-      fileSize = json["fileSize"];
+      if(json["fileSize"] is core.String){
+        fileSize = core.int.parse(json["fileSize"]);
+      }else{
+        fileSize = json["fileSize"];
+      }
     }
     if (json.containsKey("iconLink")) {
       iconLink = json["iconLink"];
@@ -1797,7 +1837,11 @@ Setting this field will put the file in all of the provided folders. On insert, 
       });
     }
     if (json.containsKey("quotaBytesUsed")) {
-      quotaBytesUsed = json["quotaBytesUsed"];
+      if(json["quotaBytesUsed"] is core.String){
+        quotaBytesUsed = core.int.parse(json["quotaBytesUsed"]);
+      }else{
+        quotaBytesUsed = json["quotaBytesUsed"];
+      }
     }
     if (json.containsKey("selfLink")) {
       selfLink = json["selfLink"];
@@ -3022,7 +3066,11 @@ class Revision {
       exportLinks = new RevisionExportLinks.fromJson(json["exportLinks"]);
     }
     if (json.containsKey("fileSize")) {
-      fileSize = json["fileSize"];
+      if(json["fileSize"] is core.String){
+        fileSize = core.int.parse(json["fileSize"]);
+      }else{
+        fileSize = json["fileSize"];
+      }
     }
     if (json.containsKey("id")) {
       id = json["id"];
