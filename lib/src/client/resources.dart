@@ -1,9 +1,11 @@
-part of drive_v2_api_client;
+part of drive_v2_api;
 
-class AboutResource_ extends Resource {
+class AboutResource_ {
 
-  AboutResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  AboutResource_(Client client) :
+      _client = client;
 
   /**
    * Gets the information about the current user along with Drive API settings
@@ -46,10 +48,12 @@ class AboutResource_ extends Resource {
   }
 }
 
-class AppsResource_ extends Resource {
+class AppsResource_ {
 
-  AppsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  AppsResource_(Client client) :
+      _client = client;
 
   /**
    * Gets a specific app.
@@ -114,10 +118,12 @@ class AppsResource_ extends Resource {
   }
 }
 
-class ChangesResource_ extends Resource {
+class ChangesResource_ {
 
-  ChangesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ChangesResource_(Client client) :
+      _client = client;
 
   /**
    * Gets a specific change.
@@ -163,7 +169,7 @@ class ChangesResource_ extends Resource {
    *
    * [maxResults] - Maximum number of changes to return.
    *   Default: 100
-   *   Minimum: 0
+   *   Minimum: 1
    *
    * [pageToken] - Page token for changes.
    *
@@ -199,12 +205,101 @@ class ChangesResource_ extends Resource {
     return response
       .then((data) => new ChangeList.fromJson(data));
   }
+
+  /**
+   * Subscribe to changes for a user.
+   *
+   * [request] - Channel to send in this request
+   *
+   * [includeDeleted] - Whether to include deleted items.
+   *   Default: true
+   *
+   * [includeSubscribed] - Whether to include shared files and public files the user has opened. When set to false, the list will include owned files plus any shared or public files the user has explictly added to a folder in Drive.
+   *   Default: true
+   *
+   * [maxResults] - Maximum number of changes to return.
+   *   Default: 100
+   *   Minimum: 1
+   *
+   * [pageToken] - Page token for changes.
+   *
+   * [startChangeId] - Change ID to start listing changes from.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Channel> watch(Channel request, {core.bool includeDeleted, core.bool includeSubscribed, core.int maxResults, core.String pageToken, core.int startChangeId, core.Map optParams}) {
+    var url = "changes/watch";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (includeDeleted != null) queryParams["includeDeleted"] = includeDeleted;
+    if (includeSubscribed != null) queryParams["includeSubscribed"] = includeSubscribed;
+    if (maxResults != null) queryParams["maxResults"] = maxResults;
+    if (pageToken != null) queryParams["pageToken"] = pageToken;
+    if (startChangeId != null) queryParams["startChangeId"] = startChangeId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new Channel.fromJson(data));
+  }
 }
 
-class ChildrenResource_ extends Resource {
+class ChannelsResource_ {
 
-  ChildrenResource_(Client client) : super(client) {
+  final Client _client;
+
+  ChannelsResource_(Client client) :
+      _client = client;
+
+  /**
+   *
+   * [request] - Channel to send in this request
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> stop(Channel request, {core.Map optParams}) {
+    var url = "channels/stop";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    return response;
   }
+}
+
+class ChildrenResource_ {
+
+  final Client _client;
+
+  ChildrenResource_(Client client) :
+      _client = client;
 
   /**
    * Removes a child from a folder.
@@ -359,10 +454,12 @@ class ChildrenResource_ extends Resource {
   }
 }
 
-class CommentsResource_ extends Resource {
+class CommentsResource_ {
 
-  CommentsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  CommentsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a comment.
@@ -604,10 +701,12 @@ class CommentsResource_ extends Resource {
   }
 }
 
-class FilesResource_ extends Resource {
+class FilesResource_ {
 
-  FilesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  FilesResource_(Client client) :
+      _client = client;
 
   /**
    * Creates a copy of the specified file.
@@ -631,9 +730,15 @@ class FilesResource_ extends Resource {
    *
    * [timedTextTrackName] - The timed text track name.
    *
+   * [visibility] - The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+   *   Default: DEFAULT
+   *   Allowed values:
+   *     DEFAULT - The visibility of the new file is determined by the user's default visibility/sharing policies.
+   *     PRIVATE - The new file will be visible to only the owner.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<File> copy(File request, core.String fileId, {core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.Map optParams}) {
+  async.Future<File> copy(File request, core.String fileId, {core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.String visibility, core.Map optParams}) {
     var url = "files/{fileId}/copy";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -647,6 +752,10 @@ class FilesResource_ extends Resource {
     if (pinned != null) queryParams["pinned"] = pinned;
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
+    if (visibility != null && !["DEFAULT", "PRIVATE"].contains(visibility)) {
+      paramErrors.add("Allowed values for visibility: DEFAULT, PRIVATE");
+    }
+    if (visibility != null) queryParams["visibility"] = visibility;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -770,9 +879,15 @@ class FilesResource_ extends Resource {
    * [useContentAsIndexableText] - Whether to use the content as indexable text.
    *   Default: false
    *
+   * [visibility] - The visibility of the new file. This parameter is only relevant when convert=false.
+   *   Default: DEFAULT
+   *   Allowed values:
+   *     DEFAULT - The visibility of the new file is determined by the user's default visibility/sharing policies.
+   *     PRIVATE - The new file will be visible to only the owner.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<File> insert(File request, {core.String content, core.String contentType, core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.bool useContentAsIndexableText, core.Map optParams}) {
+  async.Future<File> insert(File request, {core.String content, core.String contentType, core.bool convert, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String timedTextLanguage, core.String timedTextTrackName, core.bool useContentAsIndexableText, core.String visibility, core.Map optParams}) {
     var url = "files";
     var uploadUrl = "/upload/drive/v2/files";
     var urlParams = new core.Map();
@@ -786,6 +901,10 @@ class FilesResource_ extends Resource {
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
     if (useContentAsIndexableText != null) queryParams["useContentAsIndexableText"] = useContentAsIndexableText;
+    if (visibility != null && !["DEFAULT", "PRIVATE"].contains(visibility)) {
+      paramErrors.add("Allowed values for visibility: DEFAULT, PRIVATE");
+    }
+    if (visibility != null) queryParams["visibility"] = visibility;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -799,7 +918,7 @@ class FilesResource_ extends Resource {
     }
 
     var response;
-    if (?content && content != null) {
+    if (content != null) {
       response = _client.upload(uploadUrl, "POST", request.toString(), content, contentType, urlParams: urlParams, queryParams: queryParams);
     } else {
       response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
@@ -1100,7 +1219,7 @@ class FilesResource_ extends Resource {
     }
 
     var response;
-    if (?content && content != null) {
+    if (content != null) {
       response = _client.upload(uploadUrl, "PUT", request.toString(), content, contentType, urlParams: urlParams, queryParams: queryParams);
     } else {
       response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
@@ -1108,12 +1227,62 @@ class FilesResource_ extends Resource {
     return response
       .then((data) => new File.fromJson(data));
   }
+
+  /**
+   * Subscribe to changes on a file
+   *
+   * [request] - Channel to send in this request
+   *
+   * [fileId] - The ID for the file in question.
+   *
+   * [projection] - This parameter is deprecated and has no function.
+   *   Allowed values:
+   *     BASIC - Deprecated
+   *     FULL - Deprecated
+   *
+   * [updateViewedDate] - Whether to update the view date after successfully retrieving the file.
+   *   Default: false
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Channel> watch(Channel request, core.String fileId, {core.String projection, core.bool updateViewedDate, core.Map optParams}) {
+    var url = "files/{fileId}/watch";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (projection != null && !["BASIC", "FULL"].contains(projection)) {
+      paramErrors.add("Allowed values for projection: BASIC, FULL");
+    }
+    if (projection != null) queryParams["projection"] = projection;
+    if (updateViewedDate != null) queryParams["updateViewedDate"] = updateViewedDate;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new Channel.fromJson(data));
+  }
 }
 
-class ParentsResource_ extends Resource {
+class ParentsResource_ {
 
-  ParentsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ParentsResource_(Client client) :
+      _client = client;
 
   /**
    * Removes a parent from a file.
@@ -1257,10 +1426,12 @@ class ParentsResource_ extends Resource {
   }
 }
 
-class PermissionsResource_ extends Resource {
+class PermissionsResource_ {
 
-  PermissionsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  PermissionsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a permission from a file.
@@ -1497,10 +1668,12 @@ class PermissionsResource_ extends Resource {
   }
 }
 
-class PropertiesResource_ extends Resource {
+class PropertiesResource_ {
 
-  PropertiesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  PropertiesResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a property.
@@ -1738,10 +1911,52 @@ class PropertiesResource_ extends Resource {
   }
 }
 
-class RepliesResource_ extends Resource {
+class RealtimeResource_ {
 
-  RepliesResource_(Client client) : super(client) {
+  final Client _client;
+
+  RealtimeResource_(Client client) :
+      _client = client;
+
+  /**
+   * Exports the contents of the Realtime API data model associated with this file as JSON.
+   *
+   * [fileId] - The ID of the file that the Realtime API data model is associated with.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> get(core.String fileId, {core.Map optParams}) {
+    var url = "files/{fileId}/realtime";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    return response;
   }
+}
+
+class RepliesResource_ {
+
+  final Client _client;
+
+  RepliesResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a reply.
@@ -2004,10 +2219,12 @@ class RepliesResource_ extends Resource {
   }
 }
 
-class RevisionsResource_ extends Resource {
+class RevisionsResource_ {
 
-  RevisionsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  RevisionsResource_(Client client) :
+      _client = client;
 
   /**
    * Removes a revision.

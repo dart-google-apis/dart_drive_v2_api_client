@@ -1,4 +1,4 @@
-part of drive_v2_api_client;
+part of drive_v2_api;
 
 /** An item with user information and settings. */
 class About {
@@ -66,10 +66,7 @@ class About {
   /** Create new About from JSON data */
   About.fromJson(core.Map json) {
     if (json.containsKey("additionalRoleInfo")) {
-      additionalRoleInfo = [];
-      json["additionalRoleInfo"].forEach((item) {
-        additionalRoleInfo.add(new AboutAdditionalRoleInfo.fromJson(item));
-      });
+      additionalRoleInfo = json["additionalRoleInfo"].map((additionalRoleInfoItem) => new AboutAdditionalRoleInfo.fromJson(additionalRoleInfoItem)).toList();
     }
     if (json.containsKey("domainSharingPolicy")) {
       domainSharingPolicy = json["domainSharingPolicy"];
@@ -78,22 +75,13 @@ class About {
       etag = json["etag"];
     }
     if (json.containsKey("exportFormats")) {
-      exportFormats = [];
-      json["exportFormats"].forEach((item) {
-        exportFormats.add(new AboutExportFormats.fromJson(item));
-      });
+      exportFormats = json["exportFormats"].map((exportFormatsItem) => new AboutExportFormats.fromJson(exportFormatsItem)).toList();
     }
     if (json.containsKey("features")) {
-      features = [];
-      json["features"].forEach((item) {
-        features.add(new AboutFeatures.fromJson(item));
-      });
+      features = json["features"].map((featuresItem) => new AboutFeatures.fromJson(featuresItem)).toList();
     }
     if (json.containsKey("importFormats")) {
-      importFormats = [];
-      json["importFormats"].forEach((item) {
-        importFormats.add(new AboutImportFormats.fromJson(item));
-      });
+      importFormats = json["importFormats"].map((importFormatsItem) => new AboutImportFormats.fromJson(importFormatsItem)).toList();
     }
     if (json.containsKey("isCurrentAppInstalled")) {
       isCurrentAppInstalled = json["isCurrentAppInstalled"];
@@ -102,17 +90,10 @@ class About {
       kind = json["kind"];
     }
     if (json.containsKey("largestChangeId")) {
-      if(json["largestChangeId"] is core.String){
-        largestChangeId = core.int.parse(json["largestChangeId"]);
-      }else{
-        largestChangeId = json["largestChangeId"];
-      }
+      largestChangeId = (json["largestChangeId"] is core.String) ? core.int.parse(json["largestChangeId"]) : json["largestChangeId"];
     }
     if (json.containsKey("maxUploadSizes")) {
-      maxUploadSizes = [];
-      json["maxUploadSizes"].forEach((item) {
-        maxUploadSizes.add(new AboutMaxUploadSizes.fromJson(item));
-      });
+      maxUploadSizes = json["maxUploadSizes"].map((maxUploadSizesItem) => new AboutMaxUploadSizes.fromJson(maxUploadSizesItem)).toList();
     }
     if (json.containsKey("name")) {
       name = json["name"];
@@ -121,39 +102,19 @@ class About {
       permissionId = json["permissionId"];
     }
     if (json.containsKey("quotaBytesTotal")) {
-      if(json["quotaBytesTotal"] is core.String){
-        quotaBytesTotal = core.int.parse(json["quotaBytesTotal"]);
-      }else{
-        quotaBytesTotal = json["quotaBytesTotal"];
-      }
+      quotaBytesTotal = (json["quotaBytesTotal"] is core.String) ? core.int.parse(json["quotaBytesTotal"]) : json["quotaBytesTotal"];
     }
     if (json.containsKey("quotaBytesUsed")) {
-      if(json["quotaBytesUsed"] is core.String){
-        quotaBytesUsed = core.int.parse(json["quotaBytesUsed"]);
-      }else{
-        quotaBytesUsed = json["quotaBytesUsed"];
-      }
+      quotaBytesUsed = (json["quotaBytesUsed"] is core.String) ? core.int.parse(json["quotaBytesUsed"]) : json["quotaBytesUsed"];
     }
     if (json.containsKey("quotaBytesUsedAggregate")) {
-      if(json["quotaBytesUsedAggregate"] is core.String){
-        quotaBytesUsedAggregate = core.int.parse(json["quotaBytesUsedAggregate"]);
-      }else{
-        quotaBytesUsedAggregate = json["quotaBytesUsedAggregate"];
-      }
+      quotaBytesUsedAggregate = (json["quotaBytesUsedAggregate"] is core.String) ? core.int.parse(json["quotaBytesUsedAggregate"]) : json["quotaBytesUsedAggregate"];
     }
     if (json.containsKey("quotaBytesUsedInTrash")) {
-      if(json["quotaBytesUsedInTrash"] is core.String){
-        quotaBytesUsedInTrash = core.int.parse(json["quotaBytesUsedInTrash"]);
-      }else{
-        quotaBytesUsedInTrash = json["quotaBytesUsedInTrash"];
-      }
+      quotaBytesUsedInTrash = (json["quotaBytesUsedInTrash"] is core.String) ? core.int.parse(json["quotaBytesUsedInTrash"]) : json["quotaBytesUsedInTrash"];
     }
     if (json.containsKey("remainingChangeIds")) {
-      if(json["remainingChangeIds"] is core.String){
-        remainingChangeIds = core.int.parse(json["remainingChangeIds"]);
-      }else{
-        remainingChangeIds = json["remainingChangeIds"];
-      }
+      remainingChangeIds = (json["remainingChangeIds"] is core.String) ? core.int.parse(json["remainingChangeIds"]) : json["remainingChangeIds"];
     }
     if (json.containsKey("rootFolderId")) {
       rootFolderId = json["rootFolderId"];
@@ -171,10 +132,7 @@ class About {
     var output = new core.Map();
 
     if (additionalRoleInfo != null) {
-      output["additionalRoleInfo"] = new core.List();
-      additionalRoleInfo.forEach((item) {
-        output["additionalRoleInfo"].add(item.toJson());
-      });
+      output["additionalRoleInfo"] = additionalRoleInfo.map((additionalRoleInfoItem) => additionalRoleInfoItem.toJson()).toList();
     }
     if (domainSharingPolicy != null) {
       output["domainSharingPolicy"] = domainSharingPolicy;
@@ -183,22 +141,13 @@ class About {
       output["etag"] = etag;
     }
     if (exportFormats != null) {
-      output["exportFormats"] = new core.List();
-      exportFormats.forEach((item) {
-        output["exportFormats"].add(item.toJson());
-      });
+      output["exportFormats"] = exportFormats.map((exportFormatsItem) => exportFormatsItem.toJson()).toList();
     }
     if (features != null) {
-      output["features"] = new core.List();
-      features.forEach((item) {
-        output["features"].add(item.toJson());
-      });
+      output["features"] = features.map((featuresItem) => featuresItem.toJson()).toList();
     }
     if (importFormats != null) {
-      output["importFormats"] = new core.List();
-      importFormats.forEach((item) {
-        output["importFormats"].add(item.toJson());
-      });
+      output["importFormats"] = importFormats.map((importFormatsItem) => importFormatsItem.toJson()).toList();
     }
     if (isCurrentAppInstalled != null) {
       output["isCurrentAppInstalled"] = isCurrentAppInstalled;
@@ -210,10 +159,7 @@ class About {
       output["largestChangeId"] = largestChangeId;
     }
     if (maxUploadSizes != null) {
-      output["maxUploadSizes"] = new core.List();
-      maxUploadSizes.forEach((item) {
-        output["maxUploadSizes"].add(item.toJson());
-      });
+      output["maxUploadSizes"] = maxUploadSizes.map((maxUploadSizesItem) => maxUploadSizesItem.toJson()).toList();
     }
     if (name != null) {
       output["name"] = name;
@@ -254,34 +200,30 @@ class About {
 
 }
 
-class AboutMaxUploadSizes {
+class AboutAdditionalRoleInfo {
 
-  /** The max upload size for this type. */
-  core.int size;
+  /** The supported additional roles per primary role. */
+  core.List<AboutAdditionalRoleInfoRoleSets> roleSets;
 
-  /** The file type. */
+  /** The content type that this additional role info applies to. */
   core.String type;
 
-  /** Create new AboutMaxUploadSizes from JSON data */
-  AboutMaxUploadSizes.fromJson(core.Map json) {
-    if (json.containsKey("size")) {
-      if(json["size"] is core.String){
-        size = core.int.parse(json["size"]);
-      }else{
-        size = json["size"];
-      }
+  /** Create new AboutAdditionalRoleInfo from JSON data */
+  AboutAdditionalRoleInfo.fromJson(core.Map json) {
+    if (json.containsKey("roleSets")) {
+      roleSets = json["roleSets"].map((roleSetsItem) => new AboutAdditionalRoleInfoRoleSets.fromJson(roleSetsItem)).toList();
     }
     if (json.containsKey("type")) {
       type = json["type"];
     }
   }
 
-  /** Create JSON Object for AboutMaxUploadSizes */
+  /** Create JSON Object for AboutAdditionalRoleInfo */
   core.Map toJson() {
     var output = new core.Map();
 
-    if (size != null) {
-      output["size"] = size;
+    if (roleSets != null) {
+      output["roleSets"] = roleSets.map((roleSetsItem) => roleSetsItem.toJson()).toList();
     }
     if (type != null) {
       output["type"] = type;
@@ -290,7 +232,44 @@ class AboutMaxUploadSizes {
     return output;
   }
 
-  /** Return String representation of AboutMaxUploadSizes */
+  /** Return String representation of AboutAdditionalRoleInfo */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+class AboutAdditionalRoleInfoRoleSets {
+
+  /** The supported additional roles with the primary role. */
+  core.List<core.String> additionalRoles;
+
+  /** A primary permission role. */
+  core.String primaryRole;
+
+  /** Create new AboutAdditionalRoleInfoRoleSets from JSON data */
+  AboutAdditionalRoleInfoRoleSets.fromJson(core.Map json) {
+    if (json.containsKey("additionalRoles")) {
+      additionalRoles = json["additionalRoles"].toList();
+    }
+    if (json.containsKey("primaryRole")) {
+      primaryRole = json["primaryRole"];
+    }
+  }
+
+  /** Create JSON Object for AboutAdditionalRoleInfoRoleSets */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (additionalRoles != null) {
+      output["additionalRoles"] = additionalRoles.toList();
+    }
+    if (primaryRole != null) {
+      output["primaryRole"] = primaryRole;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of AboutAdditionalRoleInfoRoleSets */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -309,10 +288,7 @@ class AboutExportFormats {
       source = json["source"];
     }
     if (json.containsKey("targets")) {
-      targets = [];
-      json["targets"].forEach((item) {
-        targets.add(item);
-      });
+      targets = json["targets"].toList();
     }
   }
 
@@ -324,10 +300,7 @@ class AboutExportFormats {
       output["source"] = source;
     }
     if (targets != null) {
-      output["targets"] = new core.List();
-      targets.forEach((item) {
-        output["targets"].add(item);
-      });
+      output["targets"] = targets.toList();
     }
 
     return output;
@@ -375,92 +348,6 @@ class AboutFeatures {
 
 }
 
-class AboutAdditionalRoleInfo {
-
-  /** The supported additional roles per primary role. */
-  core.List<AboutAdditionalRoleInfoRoleSets> roleSets;
-
-  /** The content type that this additional role info applies to. */
-  core.String type;
-
-  /** Create new AboutAdditionalRoleInfo from JSON data */
-  AboutAdditionalRoleInfo.fromJson(core.Map json) {
-    if (json.containsKey("roleSets")) {
-      roleSets = [];
-      json["roleSets"].forEach((item) {
-        roleSets.add(new AboutAdditionalRoleInfoRoleSets.fromJson(item));
-      });
-    }
-    if (json.containsKey("type")) {
-      type = json["type"];
-    }
-  }
-
-  /** Create JSON Object for AboutAdditionalRoleInfo */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (roleSets != null) {
-      output["roleSets"] = new core.List();
-      roleSets.forEach((item) {
-        output["roleSets"].add(item.toJson());
-      });
-    }
-    if (type != null) {
-      output["type"] = type;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of AboutAdditionalRoleInfo */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-class AboutAdditionalRoleInfoRoleSets {
-
-  /** The supported additional roles with the primary role. */
-  core.List<core.String> additionalRoles;
-
-  /** A primary permission role. */
-  core.String primaryRole;
-
-  /** Create new AboutAdditionalRoleInfoRoleSets from JSON data */
-  AboutAdditionalRoleInfoRoleSets.fromJson(core.Map json) {
-    if (json.containsKey("additionalRoles")) {
-      additionalRoles = [];
-      json["additionalRoles"].forEach((item) {
-        additionalRoles.add(item);
-      });
-    }
-    if (json.containsKey("primaryRole")) {
-      primaryRole = json["primaryRole"];
-    }
-  }
-
-  /** Create JSON Object for AboutAdditionalRoleInfoRoleSets */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (additionalRoles != null) {
-      output["additionalRoles"] = new core.List();
-      additionalRoles.forEach((item) {
-        output["additionalRoles"].add(item);
-      });
-    }
-    if (primaryRole != null) {
-      output["primaryRole"] = primaryRole;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of AboutAdditionalRoleInfoRoleSets */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
 class AboutImportFormats {
 
   /** The imported file's content type to convert from. */
@@ -475,10 +362,7 @@ class AboutImportFormats {
       source = json["source"];
     }
     if (json.containsKey("targets")) {
-      targets = [];
-      json["targets"].forEach((item) {
-        targets.add(item);
-      });
+      targets = json["targets"].toList();
     }
   }
 
@@ -490,16 +374,50 @@ class AboutImportFormats {
       output["source"] = source;
     }
     if (targets != null) {
-      output["targets"] = new core.List();
-      targets.forEach((item) {
-        output["targets"].add(item);
-      });
+      output["targets"] = targets.toList();
     }
 
     return output;
   }
 
   /** Return String representation of AboutImportFormats */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+class AboutMaxUploadSizes {
+
+  /** The max upload size for this type. */
+  core.int size;
+
+  /** The file type. */
+  core.String type;
+
+  /** Create new AboutMaxUploadSizes from JSON data */
+  AboutMaxUploadSizes.fromJson(core.Map json) {
+    if (json.containsKey("size")) {
+      size = (json["size"] is core.String) ? core.int.parse(json["size"]) : json["size"];
+    }
+    if (json.containsKey("type")) {
+      type = json["type"];
+    }
+  }
+
+  /** Create JSON Object for AboutMaxUploadSizes */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (size != null) {
+      output["size"] = size;
+    }
+    if (type != null) {
+      output["type"] = type;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of AboutMaxUploadSizes */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -573,10 +491,7 @@ class App {
       authorized = json["authorized"];
     }
     if (json.containsKey("icons")) {
-      icons = [];
-      json["icons"].forEach((item) {
-        icons.add(new AppIcons.fromJson(item));
-      });
+      icons = json["icons"].map((iconsItem) => new AppIcons.fromJson(iconsItem)).toList();
     }
     if (json.containsKey("id")) {
       id = json["id"];
@@ -600,16 +515,10 @@ class App {
       openUrlTemplate = json["openUrlTemplate"];
     }
     if (json.containsKey("primaryFileExtensions")) {
-      primaryFileExtensions = [];
-      json["primaryFileExtensions"].forEach((item) {
-        primaryFileExtensions.add(item);
-      });
+      primaryFileExtensions = json["primaryFileExtensions"].toList();
     }
     if (json.containsKey("primaryMimeTypes")) {
-      primaryMimeTypes = [];
-      json["primaryMimeTypes"].forEach((item) {
-        primaryMimeTypes.add(item);
-      });
+      primaryMimeTypes = json["primaryMimeTypes"].toList();
     }
     if (json.containsKey("productId")) {
       productId = json["productId"];
@@ -618,16 +527,10 @@ class App {
       productUrl = json["productUrl"];
     }
     if (json.containsKey("secondaryFileExtensions")) {
-      secondaryFileExtensions = [];
-      json["secondaryFileExtensions"].forEach((item) {
-        secondaryFileExtensions.add(item);
-      });
+      secondaryFileExtensions = json["secondaryFileExtensions"].toList();
     }
     if (json.containsKey("secondaryMimeTypes")) {
-      secondaryMimeTypes = [];
-      json["secondaryMimeTypes"].forEach((item) {
-        secondaryMimeTypes.add(item);
-      });
+      secondaryMimeTypes = json["secondaryMimeTypes"].toList();
     }
     if (json.containsKey("shortDescription")) {
       shortDescription = json["shortDescription"];
@@ -654,10 +557,7 @@ class App {
       output["authorized"] = authorized;
     }
     if (icons != null) {
-      output["icons"] = new core.List();
-      icons.forEach((item) {
-        output["icons"].add(item.toJson());
-      });
+      output["icons"] = icons.map((iconsItem) => iconsItem.toJson()).toList();
     }
     if (id != null) {
       output["id"] = id;
@@ -681,16 +581,10 @@ class App {
       output["openUrlTemplate"] = openUrlTemplate;
     }
     if (primaryFileExtensions != null) {
-      output["primaryFileExtensions"] = new core.List();
-      primaryFileExtensions.forEach((item) {
-        output["primaryFileExtensions"].add(item);
-      });
+      output["primaryFileExtensions"] = primaryFileExtensions.toList();
     }
     if (primaryMimeTypes != null) {
-      output["primaryMimeTypes"] = new core.List();
-      primaryMimeTypes.forEach((item) {
-        output["primaryMimeTypes"].add(item);
-      });
+      output["primaryMimeTypes"] = primaryMimeTypes.toList();
     }
     if (productId != null) {
       output["productId"] = productId;
@@ -699,16 +593,10 @@ class App {
       output["productUrl"] = productUrl;
     }
     if (secondaryFileExtensions != null) {
-      output["secondaryFileExtensions"] = new core.List();
-      secondaryFileExtensions.forEach((item) {
-        output["secondaryFileExtensions"].add(item);
-      });
+      output["secondaryFileExtensions"] = secondaryFileExtensions.toList();
     }
     if (secondaryMimeTypes != null) {
-      output["secondaryMimeTypes"] = new core.List();
-      secondaryMimeTypes.forEach((item) {
-        output["secondaryMimeTypes"].add(item);
-      });
+      output["secondaryMimeTypes"] = secondaryMimeTypes.toList();
     }
     if (shortDescription != null) {
       output["shortDescription"] = shortDescription;
@@ -804,10 +692,7 @@ class AppList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new App.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new App.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -825,10 +710,7 @@ class AppList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -863,6 +745,9 @@ class Change {
   /** This is always drive#change. */
   core.String kind;
 
+  /** The time of this modification. */
+  core.String modificationDate;
+
   /** A link back to this change. */
   core.String selfLink;
 
@@ -878,14 +763,13 @@ class Change {
       fileId = json["fileId"];
     }
     if (json.containsKey("id")) {
-      if(json["id"] is core.String){
-        id = core.int.parse(json["id"]);
-      }else{
-        id = json["id"];
-      }
+      id = (json["id"] is core.String) ? core.int.parse(json["id"]) : json["id"];
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
+    }
+    if (json.containsKey("modificationDate")) {
+      modificationDate = json["modificationDate"];
     }
     if (json.containsKey("selfLink")) {
       selfLink = json["selfLink"];
@@ -910,6 +794,9 @@ class Change {
     }
     if (kind != null) {
       output["kind"] = kind;
+    }
+    if (modificationDate != null) {
+      output["modificationDate"] = modificationDate;
     }
     if (selfLink != null) {
       output["selfLink"] = selfLink;
@@ -953,20 +840,13 @@ class ChangeList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Change.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Change.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
     if (json.containsKey("largestChangeId")) {
-      if(json["largestChangeId"] is core.String){
-        largestChangeId = core.int.parse(json["largestChangeId"]);
-      }else{
-        largestChangeId = json["largestChangeId"];
-      }
+      largestChangeId = (json["largestChangeId"] is core.String) ? core.int.parse(json["largestChangeId"]) : json["largestChangeId"];
     }
     if (json.containsKey("nextLink")) {
       nextLink = json["nextLink"];
@@ -987,10 +867,7 @@ class ChangeList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1012,6 +889,106 @@ class ChangeList {
   }
 
   /** Return String representation of ChangeList */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+class Channel {
+
+  /** The address of the receiving entity where events are delivered. Specific to the channel type. */
+  core.String address;
+
+  /** The expiration instant for this channel if it is defined. */
+  core.int expiration;
+
+  /** A UUID for the channel */
+  core.String id;
+
+  /** A channel watching an API resource */
+  core.String kind;
+
+  /** Additional parameters controlling delivery channel behavior */
+  core.Map<core.String, core.String> params;
+
+  /** An opaque id that identifies the resource that is being watched. Stable across different API versions */
+  core.String resourceId;
+
+  /** The canonicalized ID of the watched resource. */
+  core.String resourceUri;
+
+  /** An arbitrary string associated with the channel that is delivered to the target address with each event delivered over this channel. */
+  core.String token;
+
+  /** The type of delivery mechanism used by this channel */
+  core.String type;
+
+  /** Create new Channel from JSON data */
+  Channel.fromJson(core.Map json) {
+    if (json.containsKey("address")) {
+      address = json["address"];
+    }
+    if (json.containsKey("expiration")) {
+      expiration = (json["expiration"] is core.String) ? core.int.parse(json["expiration"]) : json["expiration"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("params")) {
+      params = _mapMap(json["params"]);
+    }
+    if (json.containsKey("resourceId")) {
+      resourceId = json["resourceId"];
+    }
+    if (json.containsKey("resourceUri")) {
+      resourceUri = json["resourceUri"];
+    }
+    if (json.containsKey("token")) {
+      token = json["token"];
+    }
+    if (json.containsKey("type")) {
+      type = json["type"];
+    }
+  }
+
+  /** Create JSON Object for Channel */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (address != null) {
+      output["address"] = address;
+    }
+    if (expiration != null) {
+      output["expiration"] = expiration;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (params != null) {
+      output["params"] = _mapMap(params);
+    }
+    if (resourceId != null) {
+      output["resourceId"] = resourceId;
+    }
+    if (resourceUri != null) {
+      output["resourceUri"] = resourceUri;
+    }
+    if (token != null) {
+      output["token"] = token;
+    }
+    if (type != null) {
+      output["type"] = type;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of Channel */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1043,10 +1020,7 @@ class ChildList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new ChildReference.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new ChildReference.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1070,10 +1044,7 @@ class ChildList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1241,10 +1212,7 @@ class Comment {
       modifiedDate = json["modifiedDate"];
     }
     if (json.containsKey("replies")) {
-      replies = [];
-      json["replies"].forEach((item) {
-        replies.add(new CommentReply.fromJson(item));
-      });
+      replies = json["replies"].map((repliesItem) => new CommentReply.fromJson(repliesItem)).toList();
     }
     if (json.containsKey("selfLink")) {
       selfLink = json["selfLink"];
@@ -1295,10 +1263,7 @@ class Comment {
       output["modifiedDate"] = modifiedDate;
     }
     if (replies != null) {
-      output["replies"] = new core.List();
-      replies.forEach((item) {
-        output["replies"].add(item.toJson());
-      });
+      output["replies"] = replies.map((repliesItem) => repliesItem.toJson()).toList();
     }
     if (selfLink != null) {
       output["selfLink"] = selfLink;
@@ -1374,10 +1339,7 @@ class CommentList {
   /** Create new CommentList from JSON data */
   CommentList.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Comment.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Comment.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1398,10 +1360,7 @@ class CommentList {
     var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1548,10 +1507,7 @@ class CommentReplyList {
   /** Create new CommentReplyList from JSON data */
   CommentReplyList.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new CommentReply.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new CommentReply.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1572,10 +1528,7 @@ class CommentReplyList {
     var output = new core.Map();
 
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1632,13 +1585,16 @@ class File {
   core.bool explicitlyTrashed;
 
   /** Links for exporting Google Docs to specific formats. */
-  FileExportLinks exportLinks;
+  core.Map<core.String, core.String> exportLinks;
 
   /** The file extension used when downloading this file. This field is read only. To set the extension, include it in the title when creating the file. This is only populated for files with content stored in Drive. */
   core.String fileExtension;
 
   /** The size of the file in bytes. This is only populated for files with content stored in Drive. */
   core.int fileSize;
+
+  /** The ID of the file's head revision. This will only be populated for files with content stored in Drive. */
+  core.String headRevisionId;
 
   /** A link to the file's icon. */
   core.String iconLink;
@@ -1680,7 +1636,7 @@ class File {
   core.String modifiedDate;
 
   /** A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used. */
-  FileOpenWithLinks openWithLinks;
+  core.Map<core.String, core.String> openWithLinks;
 
   /** The original filename if the file was uploaded manually, or the original title if the file was inserted through the API. Note that renames of the title will not change the original filename. This will only be populated on files with content stored in Drive. */
   core.String originalFilename;
@@ -1761,17 +1717,16 @@ Setting this field will put the file in all of the provided folders. On insert, 
       explicitlyTrashed = json["explicitlyTrashed"];
     }
     if (json.containsKey("exportLinks")) {
-      exportLinks = new FileExportLinks.fromJson(json["exportLinks"]);
+      exportLinks = _mapMap(json["exportLinks"]);
     }
     if (json.containsKey("fileExtension")) {
       fileExtension = json["fileExtension"];
     }
     if (json.containsKey("fileSize")) {
-      if(json["fileSize"] is core.String){
-        fileSize = core.int.parse(json["fileSize"]);
-      }else{
-        fileSize = json["fileSize"];
-      }
+      fileSize = (json["fileSize"] is core.String) ? core.int.parse(json["fileSize"]) : json["fileSize"];
+    }
+    if (json.containsKey("headRevisionId")) {
+      headRevisionId = json["headRevisionId"];
     }
     if (json.containsKey("iconLink")) {
       iconLink = json["iconLink"];
@@ -1813,35 +1768,22 @@ Setting this field will put the file in all of the provided folders. On insert, 
       modifiedDate = json["modifiedDate"];
     }
     if (json.containsKey("openWithLinks")) {
-      openWithLinks = new FileOpenWithLinks.fromJson(json["openWithLinks"]);
+      openWithLinks = _mapMap(json["openWithLinks"]);
     }
     if (json.containsKey("originalFilename")) {
       originalFilename = json["originalFilename"];
     }
     if (json.containsKey("ownerNames")) {
-      ownerNames = [];
-      json["ownerNames"].forEach((item) {
-        ownerNames.add(item);
-      });
+      ownerNames = json["ownerNames"].toList();
     }
     if (json.containsKey("owners")) {
-      owners = [];
-      json["owners"].forEach((item) {
-        owners.add(new User.fromJson(item));
-      });
+      owners = json["owners"].map((ownersItem) => new User.fromJson(ownersItem)).toList();
     }
     if (json.containsKey("parents")) {
-      parents = [];
-      json["parents"].forEach((item) {
-        parents.add(new ParentReference.fromJson(item));
-      });
+      parents = json["parents"].map((parentsItem) => new ParentReference.fromJson(parentsItem)).toList();
     }
     if (json.containsKey("quotaBytesUsed")) {
-      if(json["quotaBytesUsed"] is core.String){
-        quotaBytesUsed = core.int.parse(json["quotaBytesUsed"]);
-      }else{
-        quotaBytesUsed = json["quotaBytesUsed"];
-      }
+      quotaBytesUsed = (json["quotaBytesUsed"] is core.String) ? core.int.parse(json["quotaBytesUsed"]) : json["quotaBytesUsed"];
     }
     if (json.containsKey("selfLink")) {
       selfLink = json["selfLink"];
@@ -1910,13 +1852,16 @@ Setting this field will put the file in all of the provided folders. On insert, 
       output["explicitlyTrashed"] = explicitlyTrashed;
     }
     if (exportLinks != null) {
-      output["exportLinks"] = exportLinks.toJson();
+      output["exportLinks"] = _mapMap(exportLinks);
     }
     if (fileExtension != null) {
       output["fileExtension"] = fileExtension;
     }
     if (fileSize != null) {
       output["fileSize"] = fileSize;
+    }
+    if (headRevisionId != null) {
+      output["headRevisionId"] = headRevisionId;
     }
     if (iconLink != null) {
       output["iconLink"] = iconLink;
@@ -1958,28 +1903,19 @@ Setting this field will put the file in all of the provided folders. On insert, 
       output["modifiedDate"] = modifiedDate;
     }
     if (openWithLinks != null) {
-      output["openWithLinks"] = openWithLinks.toJson();
+      output["openWithLinks"] = _mapMap(openWithLinks);
     }
     if (originalFilename != null) {
       output["originalFilename"] = originalFilename;
     }
     if (ownerNames != null) {
-      output["ownerNames"] = new core.List();
-      ownerNames.forEach((item) {
-        output["ownerNames"].add(item);
-      });
+      output["ownerNames"] = ownerNames.toList();
     }
     if (owners != null) {
-      output["owners"] = new core.List();
-      owners.forEach((item) {
-        output["owners"].add(item.toJson());
-      });
+      output["owners"] = owners.map((ownersItem) => ownersItem.toJson()).toList();
     }
     if (parents != null) {
-      output["parents"] = new core.List();
-      parents.forEach((item) {
-        output["parents"].add(item.toJson());
-      });
+      output["parents"] = parents.map((parentsItem) => parentsItem.toJson()).toList();
     }
     if (quotaBytesUsed != null) {
       output["quotaBytesUsed"] = quotaBytesUsed;
@@ -2019,178 +1955,6 @@ Setting this field will put the file in all of the provided folders. On insert, 
   }
 
   /** Return String representation of File */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used. */
-class FileOpenWithLinks {
-
-  /** Create new FileOpenWithLinks from JSON data */
-  FileOpenWithLinks.fromJson(core.Map json) {
-  }
-
-  /** Create JSON Object for FileOpenWithLinks */
-  core.Map toJson() {
-    var output = new core.Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of FileOpenWithLinks */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** Links for exporting Google Docs to specific formats. */
-class FileExportLinks {
-
-  /** Create new FileExportLinks from JSON data */
-  FileExportLinks.fromJson(core.Map json) {
-  }
-
-  /** Create JSON Object for FileExportLinks */
-  core.Map toJson() {
-    var output = new core.Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of FileExportLinks */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google. */
-class FileThumbnail {
-
-  /** The URL-safe Base64 encoded bytes of the thumbnail image. */
-  core.String image;
-
-  /** The MIME type of the thumbnail. */
-  core.String mimeType;
-
-  /** Create new FileThumbnail from JSON data */
-  FileThumbnail.fromJson(core.Map json) {
-    if (json.containsKey("image")) {
-      image = json["image"];
-    }
-    if (json.containsKey("mimeType")) {
-      mimeType = json["mimeType"];
-    }
-  }
-
-  /** Create JSON Object for FileThumbnail */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (image != null) {
-      output["image"] = image;
-    }
-    if (mimeType != null) {
-      output["mimeType"] = mimeType;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of FileThumbnail */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A group of labels for the file. */
-class FileLabels {
-
-  /** Whether this file is hidden from the user. */
-  core.bool hidden;
-
-  /** Whether viewers are prevented from downloading this file. */
-  core.bool restricted;
-
-  /** Whether this file is starred by the user. */
-  core.bool starred;
-
-  /** Whether this file has been trashed. */
-  core.bool trashed;
-
-  /** Whether this file has been viewed by this user. */
-  core.bool viewed;
-
-  /** Create new FileLabels from JSON data */
-  FileLabels.fromJson(core.Map json) {
-    if (json.containsKey("hidden")) {
-      hidden = json["hidden"];
-    }
-    if (json.containsKey("restricted")) {
-      restricted = json["restricted"];
-    }
-    if (json.containsKey("starred")) {
-      starred = json["starred"];
-    }
-    if (json.containsKey("trashed")) {
-      trashed = json["trashed"];
-    }
-    if (json.containsKey("viewed")) {
-      viewed = json["viewed"];
-    }
-  }
-
-  /** Create JSON Object for FileLabels */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (hidden != null) {
-      output["hidden"] = hidden;
-    }
-    if (restricted != null) {
-      output["restricted"] = restricted;
-    }
-    if (starred != null) {
-      output["starred"] = starred;
-    }
-    if (trashed != null) {
-      output["trashed"] = trashed;
-    }
-    if (viewed != null) {
-      output["viewed"] = viewed;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of FileLabels */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** Indexable text attributes for the file (can only be written) */
-class FileIndexableText {
-
-  /** The text to be indexed for this file. */
-  core.String text;
-
-  /** Create new FileIndexableText from JSON data */
-  FileIndexableText.fromJson(core.Map json) {
-    if (json.containsKey("text")) {
-      text = json["text"];
-    }
-  }
-
-  /** Create JSON Object for FileIndexableText */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (text != null) {
-      output["text"] = text;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of FileIndexableText */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2451,6 +2215,138 @@ class FileImageMediaMetadataLocation {
 
 }
 
+/** Indexable text attributes for the file (can only be written) */
+class FileIndexableText {
+
+  /** The text to be indexed for this file. */
+  core.String text;
+
+  /** Create new FileIndexableText from JSON data */
+  FileIndexableText.fromJson(core.Map json) {
+    if (json.containsKey("text")) {
+      text = json["text"];
+    }
+  }
+
+  /** Create JSON Object for FileIndexableText */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (text != null) {
+      output["text"] = text;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of FileIndexableText */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A group of labels for the file. */
+class FileLabels {
+
+  /** Whether this file is hidden from the user. */
+  core.bool hidden;
+
+  /** Whether viewers are prevented from downloading this file. */
+  core.bool restricted;
+
+  /** Whether this file is starred by the user. */
+  core.bool starred;
+
+  /** Whether this file has been trashed. */
+  core.bool trashed;
+
+  /** Whether this file has been viewed by this user. */
+  core.bool viewed;
+
+  /** Create new FileLabels from JSON data */
+  FileLabels.fromJson(core.Map json) {
+    if (json.containsKey("hidden")) {
+      hidden = json["hidden"];
+    }
+    if (json.containsKey("restricted")) {
+      restricted = json["restricted"];
+    }
+    if (json.containsKey("starred")) {
+      starred = json["starred"];
+    }
+    if (json.containsKey("trashed")) {
+      trashed = json["trashed"];
+    }
+    if (json.containsKey("viewed")) {
+      viewed = json["viewed"];
+    }
+  }
+
+  /** Create JSON Object for FileLabels */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (hidden != null) {
+      output["hidden"] = hidden;
+    }
+    if (restricted != null) {
+      output["restricted"] = restricted;
+    }
+    if (starred != null) {
+      output["starred"] = starred;
+    }
+    if (trashed != null) {
+      output["trashed"] = trashed;
+    }
+    if (viewed != null) {
+      output["viewed"] = viewed;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of FileLabels */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google. */
+class FileThumbnail {
+
+  /** The URL-safe Base64 encoded bytes of the thumbnail image. */
+  core.String image;
+
+  /** The MIME type of the thumbnail. */
+  core.String mimeType;
+
+  /** Create new FileThumbnail from JSON data */
+  FileThumbnail.fromJson(core.Map json) {
+    if (json.containsKey("image")) {
+      image = json["image"];
+    }
+    if (json.containsKey("mimeType")) {
+      mimeType = json["mimeType"];
+    }
+  }
+
+  /** Create JSON Object for FileThumbnail */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (image != null) {
+      output["image"] = image;
+    }
+    if (mimeType != null) {
+      output["mimeType"] = mimeType;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of FileThumbnail */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** A list of files. */
 class FileList {
 
@@ -2478,10 +2374,7 @@ class FileList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new File.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new File.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2505,10 +2398,7 @@ class FileList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2552,10 +2442,7 @@ class ParentList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new ParentReference.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new ParentReference.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2573,10 +2460,7 @@ class ParentList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2698,7 +2582,7 @@ class Permission {
 - anyone */
   core.String type;
 
-  /** The email address or domain name for the entity. This is not populated in responses. */
+  /** The email address or domain name for the entity. This is used during inserts and is not populated in responses. */
   core.String value;
 
   /** Whether the link is required for this permission. */
@@ -2707,10 +2591,7 @@ class Permission {
   /** Create new Permission from JSON data */
   Permission.fromJson(core.Map json) {
     if (json.containsKey("additionalRoles")) {
-      additionalRoles = [];
-      json["additionalRoles"].forEach((item) {
-        additionalRoles.add(item);
-      });
+      additionalRoles = json["additionalRoles"].toList();
     }
     if (json.containsKey("authKey")) {
       authKey = json["authKey"];
@@ -2752,10 +2633,7 @@ class Permission {
     var output = new core.Map();
 
     if (additionalRoles != null) {
-      output["additionalRoles"] = new core.List();
-      additionalRoles.forEach((item) {
-        output["additionalRoles"].add(item);
-      });
+      output["additionalRoles"] = additionalRoles.toList();
     }
     if (authKey != null) {
       output["authKey"] = authKey;
@@ -2820,10 +2698,7 @@ class PermissionList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Permission.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Permission.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2841,10 +2716,7 @@ class PermissionList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2956,10 +2828,7 @@ class PropertyList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Property.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Property.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2977,10 +2846,7 @@ class PropertyList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -3007,7 +2873,7 @@ class Revision {
   core.String etag;
 
   /** Links for exporting Google Docs to specific formats. */
-  RevisionExportLinks exportLinks;
+  core.Map<core.String, core.String> exportLinks;
 
   /** The size of the revision in bytes. This will only be populated on files with content stored in Drive. */
   core.int fileSize;
@@ -3063,14 +2929,10 @@ class Revision {
       etag = json["etag"];
     }
     if (json.containsKey("exportLinks")) {
-      exportLinks = new RevisionExportLinks.fromJson(json["exportLinks"]);
+      exportLinks = _mapMap(json["exportLinks"]);
     }
     if (json.containsKey("fileSize")) {
-      if(json["fileSize"] is core.String){
-        fileSize = core.int.parse(json["fileSize"]);
-      }else{
-        fileSize = json["fileSize"];
-      }
+      fileSize = (json["fileSize"] is core.String) ? core.int.parse(json["fileSize"]) : json["fileSize"];
     }
     if (json.containsKey("id")) {
       id = json["id"];
@@ -3127,7 +2989,7 @@ class Revision {
       output["etag"] = etag;
     }
     if (exportLinks != null) {
-      output["exportLinks"] = exportLinks.toJson();
+      output["exportLinks"] = _mapMap(exportLinks);
     }
     if (fileSize != null) {
       output["fileSize"] = fileSize;
@@ -3183,26 +3045,6 @@ class Revision {
 
 }
 
-/** Links for exporting Google Docs to specific formats. */
-class RevisionExportLinks {
-
-  /** Create new RevisionExportLinks from JSON data */
-  RevisionExportLinks.fromJson(core.Map json) {
-  }
-
-  /** Create JSON Object for RevisionExportLinks */
-  core.Map toJson() {
-    var output = new core.Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of RevisionExportLinks */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
 /** A list of revisions of a file. */
 class RevisionList {
 
@@ -3224,10 +3066,7 @@ class RevisionList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Revision.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Revision.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -3245,10 +3084,7 @@ class RevisionList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -3359,3 +3195,16 @@ class UserPicture {
 
 }
 
+core.Map _mapMap(core.Map source, [core.Object convert(core.Object source) = null]) {
+  assert(source != null);
+  var result = new dart_collection.LinkedHashMap();
+  source.forEach((core.String key, value) {
+    assert(key != null);
+    if(convert == null) {
+      result[key] = value;
+    } else {
+      result[key] = convert(value);
+    }
+  });
+  return result;
+}
