@@ -196,7 +196,7 @@ class About {
   }
 
   /** Return String representation of About */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -233,7 +233,7 @@ class AboutAdditionalRoleInfo {
   }
 
   /** Return String representation of AboutAdditionalRoleInfo */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -270,7 +270,7 @@ class AboutAdditionalRoleInfoRoleSets {
   }
 
   /** Return String representation of AboutAdditionalRoleInfoRoleSets */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -307,7 +307,7 @@ class AboutExportFormats {
   }
 
   /** Return String representation of AboutExportFormats */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -344,7 +344,7 @@ class AboutFeatures {
   }
 
   /** Return String representation of AboutFeatures */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -381,7 +381,7 @@ class AboutImportFormats {
   }
 
   /** Return String representation of AboutImportFormats */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -418,7 +418,7 @@ class AboutMaxUploadSizes {
   }
 
   /** Return String representation of AboutMaxUploadSizes */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -618,7 +618,7 @@ class App {
   }
 
   /** Return String representation of App */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -667,7 +667,7 @@ class AppIcons {
   }
 
   /** Return String representation of AppIcons */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -723,7 +723,7 @@ class AppList {
   }
 
   /** Return String representation of AppList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -806,7 +806,7 @@ class Change {
   }
 
   /** Return String representation of Change */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -889,37 +889,40 @@ class ChangeList {
   }
 
   /** Return String representation of ChangeList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
 class Channel {
 
-  /** The address of the receiving entity where events are delivered. Specific to the channel type. */
+  /** The address where notifications are delivered for this channel. */
   core.String address;
 
-  /** The expiration instant for this channel if it is defined. */
+  /** Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional. */
   core.int expiration;
 
-  /** A UUID for the channel */
+  /** A UUID or similar unique string that identifies this channel. */
   core.String id;
 
-  /** A channel watching an API resource */
+  /** Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string "api#channel". */
   core.String kind;
 
-  /** Additional parameters controlling delivery channel behavior */
+  /** Additional parameters controlling delivery channel behavior. Optional. */
   core.Map<core.String, core.String> params;
 
-  /** An opaque id that identifies the resource that is being watched. Stable across different API versions */
+  /** A Boolean value to indicate whether payload is wanted. Optional. */
+  core.bool payload;
+
+  /** An opaque ID that identifies the resource being watched on this channel. Stable across different API versions. */
   core.String resourceId;
 
-  /** The canonicalized ID of the watched resource. */
+  /** A version-specific identifier for the watched resource. */
   core.String resourceUri;
 
-  /** An arbitrary string associated with the channel that is delivered to the target address with each event delivered over this channel. */
+  /** An arbitrary string delivered to the target address with each notification delivered over this channel. Optional. */
   core.String token;
 
-  /** The type of delivery mechanism used by this channel */
+  /** The type of delivery mechanism used for this channel. */
   core.String type;
 
   /** Create new Channel from JSON data */
@@ -938,6 +941,9 @@ class Channel {
     }
     if (json.containsKey("params")) {
       params = _mapMap(json["params"]);
+    }
+    if (json.containsKey("payload")) {
+      payload = json["payload"];
     }
     if (json.containsKey("resourceId")) {
       resourceId = json["resourceId"];
@@ -972,6 +978,9 @@ class Channel {
     if (params != null) {
       output["params"] = _mapMap(params);
     }
+    if (payload != null) {
+      output["payload"] = payload;
+    }
     if (resourceId != null) {
       output["resourceId"] = resourceId;
     }
@@ -989,7 +998,7 @@ class Channel {
   }
 
   /** Return String representation of Channel */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1063,7 +1072,7 @@ class ChildList {
   }
 
   /** Return String representation of ChildList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1119,7 +1128,7 @@ class ChildReference {
   }
 
   /** Return String representation of ChildReference */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1276,7 +1285,7 @@ class Comment {
   }
 
   /** Return String representation of Comment */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1314,7 +1323,7 @@ class CommentContext {
   }
 
   /** Return String representation of CommentContext */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1379,7 +1388,7 @@ class CommentList {
   }
 
   /** Return String representation of CommentList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1482,7 +1491,7 @@ class CommentReply {
   }
 
   /** Return String representation of CommentReply */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1547,7 +1556,7 @@ class CommentReplyList {
   }
 
   /** Return String representation of CommentReplyList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -1559,6 +1568,9 @@ class File {
 
   /** Whether this file is in the appdata folder. */
   core.bool appDataContents;
+
+  /** Whether the file can be copied by the current user. */
+  core.bool copyable;
 
   /** Create time for this file (formatted ISO8601 timestamp). */
   core.String createdDate;
@@ -1651,6 +1663,9 @@ class File {
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
   core.List<ParentReference> parents;
 
+  /** The list of properties. */
+  core.List<Property> properties;
+
   /** The number of quota bytes used by this file. */
   core.int quotaBytesUsed;
 
@@ -1691,6 +1706,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (json.containsKey("appDataContents")) {
       appDataContents = json["appDataContents"];
+    }
+    if (json.containsKey("copyable")) {
+      copyable = json["copyable"];
     }
     if (json.containsKey("createdDate")) {
       createdDate = json["createdDate"];
@@ -1782,6 +1800,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (json.containsKey("parents")) {
       parents = json["parents"].map((parentsItem) => new ParentReference.fromJson(parentsItem)).toList();
     }
+    if (json.containsKey("properties")) {
+      properties = json["properties"].map((propertiesItem) => new Property.fromJson(propertiesItem)).toList();
+    }
     if (json.containsKey("quotaBytesUsed")) {
       quotaBytesUsed = (json["quotaBytesUsed"] is core.String) ? core.int.parse(json["quotaBytesUsed"]) : json["quotaBytesUsed"];
     }
@@ -1826,6 +1847,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (appDataContents != null) {
       output["appDataContents"] = appDataContents;
+    }
+    if (copyable != null) {
+      output["copyable"] = copyable;
     }
     if (createdDate != null) {
       output["createdDate"] = createdDate;
@@ -1917,6 +1941,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (parents != null) {
       output["parents"] = parents.map((parentsItem) => parentsItem.toJson()).toList();
     }
+    if (properties != null) {
+      output["properties"] = properties.map((propertiesItem) => propertiesItem.toJson()).toList();
+    }
     if (quotaBytesUsed != null) {
       output["quotaBytesUsed"] = quotaBytesUsed;
     }
@@ -1955,7 +1982,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
   }
 
   /** Return String representation of File */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2164,7 +2191,7 @@ class FileImageMediaMetadata {
   }
 
   /** Return String representation of FileImageMediaMetadata */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2211,7 +2238,7 @@ class FileImageMediaMetadataLocation {
   }
 
   /** Return String representation of FileImageMediaMetadataLocation */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2240,14 +2267,14 @@ class FileIndexableText {
   }
 
   /** Return String representation of FileIndexableText */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
 /** A group of labels for the file. */
 class FileLabels {
 
-  /** Whether this file is hidden from the user. */
+  /** Deprecated. */
   core.bool hidden;
 
   /** Whether viewers are prevented from downloading this file. */
@@ -2305,7 +2332,7 @@ class FileLabels {
   }
 
   /** Return String representation of FileLabels */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2343,7 +2370,7 @@ class FileThumbnail {
   }
 
   /** Return String representation of FileThumbnail */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2417,7 +2444,7 @@ class FileList {
   }
 
   /** Return String representation of FileList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2473,7 +2500,7 @@ class ParentList {
   }
 
   /** Return String representation of ParentList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2538,7 +2565,7 @@ class ParentReference {
   }
 
   /** Return String representation of ParentReference */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2550,6 +2577,12 @@ class Permission {
 
   /** The authkey parameter required for this permission. */
   core.String authKey;
+
+  /** The domain name of the entity this permission refers to. This is an output-only field which is populated when the permission type is "user", "group" or "domain". */
+  core.String domain;
+
+  /** The email address of the user this permission refers to. This is an output-only field which is populated when the permission type is "user" and the given user's Google+ profile privacy settings allow exposing their email address. */
+  core.String emailAddress;
 
   /** The ETag of the permission. */
   core.String etag;
@@ -2596,6 +2629,12 @@ class Permission {
     if (json.containsKey("authKey")) {
       authKey = json["authKey"];
     }
+    if (json.containsKey("domain")) {
+      domain = json["domain"];
+    }
+    if (json.containsKey("emailAddress")) {
+      emailAddress = json["emailAddress"];
+    }
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2638,6 +2677,12 @@ class Permission {
     if (authKey != null) {
       output["authKey"] = authKey;
     }
+    if (domain != null) {
+      output["domain"] = domain;
+    }
+    if (emailAddress != null) {
+      output["emailAddress"] = emailAddress;
+    }
     if (etag != null) {
       output["etag"] = etag;
     }
@@ -2673,7 +2718,45 @@ class Permission {
   }
 
   /** Return String representation of Permission */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** An ID for a user or group as seen in Permission items. */
+class PermissionId {
+
+  /** The permission ID. */
+  core.String id;
+
+  /** This is always drive#permissionId. */
+  core.String kind;
+
+  /** Create new PermissionId from JSON data */
+  PermissionId.fromJson(core.Map json) {
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+  }
+
+  /** Create JSON Object for PermissionId */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PermissionId */
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2729,7 +2812,7 @@ class PermissionList {
   }
 
   /** Return String representation of PermissionList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2803,7 +2886,7 @@ class Property {
   }
 
   /** Return String representation of Property */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -2859,7 +2942,7 @@ class PropertyList {
   }
 
   /** Return String representation of PropertyList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -3041,7 +3124,7 @@ class Revision {
   }
 
   /** Return String representation of Revision */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -3097,7 +3180,7 @@ class RevisionList {
   }
 
   /** Return String representation of RevisionList */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -3162,7 +3245,7 @@ class User {
   }
 
   /** Return String representation of User */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 
@@ -3191,7 +3274,7 @@ class UserPicture {
   }
 
   /** Return String representation of UserPicture */
-  core.String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.encode(this.toJson());
 
 }
 

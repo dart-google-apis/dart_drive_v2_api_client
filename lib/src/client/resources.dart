@@ -265,6 +265,7 @@ class ChannelsResource_ {
       _client = client;
 
   /**
+   * Stop watching resources through this channel
    *
    * [request] - Channel to send in this request
    *
@@ -1507,6 +1508,39 @@ class PermissionsResource_ {
   }
 
   /**
+   * Returns the permission ID for an email address.
+   *
+   * [email] - The email address for which to return a permission ID
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<PermissionId> getIdForEmail(core.String email, {core.Map optParams}) {
+    var url = "permissionIds/{email}";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (email == null) paramErrors.add("email is required");
+    if (email != null) urlParams["email"] = email;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new PermissionId.fromJson(data));
+  }
+
+  /**
    * Inserts a permission for a file.
    *
    * [request] - Permission to send in this request
@@ -1947,6 +1981,50 @@ class RealtimeResource_ {
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    return response;
+  }
+
+  /**
+   * Overwrites the Realtime API data model associated with this file with the provided JSON data model.
+   *
+   * [fileId] - The ID of the file that the Realtime API data model is associated with.
+   *
+   * [content] - Base64 Data of the file content to be uploaded
+   *
+   * [contentType] - MimeType of the file to be uploaded
+   *
+   * [baseRevision] - The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> update(core.String fileId, {core.String content, core.String contentType, core.String baseRevision, core.Map optParams}) {
+    var url = "files/{fileId}/realtime";
+    var uploadUrl = "/upload/drive/v2/files/{fileId}/realtime";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (baseRevision != null) queryParams["baseRevision"] = baseRevision;
+    if (fileId == null) paramErrors.add("fileId is required");
+    if (fileId != null) urlParams["fileId"] = fileId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    if (content != null) {
+      response = _client.upload(uploadUrl, "PUT", null, content, contentType, urlParams: urlParams, queryParams: queryParams);
+    } else {
+      response = _client.request(url, "PUT", urlParams: urlParams, queryParams: queryParams);
+    }
     return response;
   }
 }

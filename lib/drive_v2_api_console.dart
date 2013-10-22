@@ -2,7 +2,7 @@ library drive_v2_api.console;
 
 import "package:google_oauth2_client/google_oauth2_console.dart" as oauth2;
 
-import 'package:google_drive_v2_api/src/cloud_api_console.dart';
+import 'package:google_drive_v2_api/src/console_client.dart';
 
 import "package:google_drive_v2_api/drive_v2_api_client.dart";
 

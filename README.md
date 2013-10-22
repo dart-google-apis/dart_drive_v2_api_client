@@ -14,7 +14,7 @@ Adding dependency to pubspec.yaml
 
 ```
   dependencies:
-    google_drive_v2_api: '>=0.3.8'
+    google_drive_v2_api: '>=0.4.9'
 ```
 
 For web applications:
