@@ -1663,7 +1663,7 @@ class File {
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
   core.List<ParentReference> parents;
 
-  /** The list of properties. */
+  /** The list of properties. This is a write-only field. */
   core.List<Property> properties;
 
   /** The number of quota bytes used by this file. */
