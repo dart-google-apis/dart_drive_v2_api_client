@@ -428,6 +428,12 @@ class App {
   /** Whether the app is authorized to access data on the user's Drive. */
   core.bool authorized;
 
+  /** The template url to create a new file with this app in a given folder. The template will contain {folderId} to be replaced by the folder to create the new file in. */
+  core.String createInFolderTemplate;
+
+  /** The url to create a new file with this app. */
+  core.String createUrl;
+
   /** The various icons for the app. */
   core.List<AppIcons> icons;
 
@@ -489,6 +495,12 @@ class App {
   App.fromJson(core.Map json) {
     if (json.containsKey("authorized")) {
       authorized = json["authorized"];
+    }
+    if (json.containsKey("createInFolderTemplate")) {
+      createInFolderTemplate = json["createInFolderTemplate"];
+    }
+    if (json.containsKey("createUrl")) {
+      createUrl = json["createUrl"];
     }
     if (json.containsKey("icons")) {
       icons = json["icons"].map((iconsItem) => new AppIcons.fromJson(iconsItem)).toList();
@@ -555,6 +567,12 @@ class App {
 
     if (authorized != null) {
       output["authorized"] = authorized;
+    }
+    if (createInFolderTemplate != null) {
+      output["createInFolderTemplate"] = createInFolderTemplate;
+    }
+    if (createUrl != null) {
+      output["createUrl"] = createUrl;
     }
     if (icons != null) {
       output["icons"] = icons.map((iconsItem) => iconsItem.toJson()).toList();
@@ -893,6 +911,7 @@ class ChangeList {
 
 }
 
+/** An notification channel used to watch for resource changes. */
 class Channel {
 
   /** The address where notifications are delivered for this channel. */
@@ -1663,7 +1682,7 @@ class File {
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
   core.List<ParentReference> parents;
 
-  /** The list of properties. This is a write-only field. */
+  /** The list of properties. */
   core.List<Property> properties;
 
   /** The number of quota bytes used by this file. */
@@ -2587,7 +2606,7 @@ class Permission {
   /** The ETag of the permission. */
   core.String etag;
 
-  /** The ID of the permission. */
+  /** The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of 'id' or 'value' fields must be specified. */
   core.String id;
 
   /** This is always drive#permission. */
@@ -2615,7 +2634,7 @@ class Permission {
 - anyone */
   core.String type;
 
-  /** The email address or domain name for the entity. This is used during inserts and is not populated in responses. */
+  /** The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of 'id' or 'value' fields must be specified. */
   core.String value;
 
   /** Whether the link is required for this permission. */
