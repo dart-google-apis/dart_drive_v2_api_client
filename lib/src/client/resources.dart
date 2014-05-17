@@ -10,7 +10,7 @@ class AboutResource_ {
   /**
    * Gets the information about the current user along with Drive API settings
    *
-   * [includeSubscribed] - When calculating the number of remaining change IDs, whether to include shared files and public files the user has opened. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explictly added to a folder in Drive.
+   * [includeSubscribed] - When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
    *   Default: true
    *
    * [maxChangeIdCount] - Maximum number of remaining change IDs to count
@@ -91,14 +91,25 @@ class AppsResource_ {
   /**
    * Lists a user's installed apps.
    *
+   * [appFilterExtensions] - A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
+   *   Default: 
+   *
+   * [appFilterMimeTypes] - A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
+   *   Default: 
+   *
+   * [languageCode] - A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<AppList> list({core.Map optParams}) {
+  async.Future<AppList> list({core.String appFilterExtensions, core.String appFilterMimeTypes, core.String languageCode, core.Map optParams}) {
     var url = "apps";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (appFilterExtensions != null) queryParams["appFilterExtensions"] = appFilterExtensions;
+    if (appFilterMimeTypes != null) queryParams["appFilterMimeTypes"] = appFilterMimeTypes;
+    if (languageCode != null) queryParams["languageCode"] = languageCode;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -164,7 +175,7 @@ class ChangesResource_ {
    * [includeDeleted] - Whether to include deleted items.
    *   Default: true
    *
-   * [includeSubscribed] - Whether to include shared files and public files the user has opened. When set to false, the list will include owned files plus any shared or public files the user has explictly added to a folder in Drive.
+   * [includeSubscribed] - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
    *   Default: true
    *
    * [maxResults] - Maximum number of changes to return.
@@ -214,7 +225,7 @@ class ChangesResource_ {
    * [includeDeleted] - Whether to include deleted items.
    *   Default: true
    *
-   * [includeSubscribed] - Whether to include shared files and public files the user has opened. When set to false, the list will include owned files plus any shared or public files the user has explictly added to a folder in Drive.
+   * [includeSubscribed] - Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
    *   Default: true
    *
    * [maxResults] - Maximum number of changes to return.
@@ -808,6 +819,34 @@ class FilesResource_ {
   }
 
   /**
+   * Permanently deletes all of the user's trashed files.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> emptyTrash({core.Map optParams}) {
+    var url = "files/trash";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
+    return response;
+  }
+
+  /**
    * Gets a file's metadata by ID.
    *
    * [fileId] - The ID for the file in question.
@@ -984,6 +1023,8 @@ class FilesResource_ {
    *
    * [fileId] - The ID of the file to update.
    *
+   * [addParents] - Comma-separated list of parent IDs to add.
+   *
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
@@ -997,6 +1038,8 @@ class FilesResource_ {
    *
    * [pinned] - Whether to pin the new revision.
    *   Default: false
+   *
+   * [removeParents] - Comma-separated list of parent IDs to remove.
    *
    * [setModifiedDate] - Whether to set the modified date with the supplied modified date.
    *   Default: false
@@ -1013,12 +1056,13 @@ class FilesResource_ {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<File> patch(File request, core.String fileId, {core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
+  async.Future<File> patch(File request, core.String fileId, {core.String addParents, core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String removeParents, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
     var url = "files/{fileId}";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (addParents != null) queryParams["addParents"] = addParents;
     if (convert != null) queryParams["convert"] = convert;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -1026,6 +1070,7 @@ class FilesResource_ {
     if (ocr != null) queryParams["ocr"] = ocr;
     if (ocrLanguage != null) queryParams["ocrLanguage"] = ocrLanguage;
     if (pinned != null) queryParams["pinned"] = pinned;
+    if (removeParents != null) queryParams["removeParents"] = removeParents;
     if (setModifiedDate != null) queryParams["setModifiedDate"] = setModifiedDate;
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
@@ -1159,6 +1204,8 @@ class FilesResource_ {
    *
    * [contentType] - MimeType of the file to be uploaded
    *
+   * [addParents] - Comma-separated list of parent IDs to add.
+   *
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
@@ -1172,6 +1219,8 @@ class FilesResource_ {
    *
    * [pinned] - Whether to pin the new revision.
    *   Default: false
+   *
+   * [removeParents] - Comma-separated list of parent IDs to remove.
    *
    * [setModifiedDate] - Whether to set the modified date with the supplied modified date.
    *   Default: false
@@ -1188,13 +1237,14 @@ class FilesResource_ {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<File> update(File request, core.String fileId, {core.String content, core.String contentType, core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
+  async.Future<File> update(File request, core.String fileId, {core.String content, core.String contentType, core.String addParents, core.bool convert, core.bool newRevision, core.bool ocr, core.String ocrLanguage, core.bool pinned, core.String removeParents, core.bool setModifiedDate, core.String timedTextLanguage, core.String timedTextTrackName, core.bool updateViewedDate, core.bool useContentAsIndexableText, core.Map optParams}) {
     var url = "files/{fileId}";
     var uploadUrl = "/upload/drive/v2/files/{fileId}";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (addParents != null) queryParams["addParents"] = addParents;
     if (convert != null) queryParams["convert"] = convert;
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
@@ -1202,6 +1252,7 @@ class FilesResource_ {
     if (ocr != null) queryParams["ocr"] = ocr;
     if (ocrLanguage != null) queryParams["ocrLanguage"] = ocrLanguage;
     if (pinned != null) queryParams["pinned"] = pinned;
+    if (removeParents != null) queryParams["removeParents"] = removeParents;
     if (setModifiedDate != null) queryParams["setModifiedDate"] = setModifiedDate;
     if (timedTextLanguage != null) queryParams["timedTextLanguage"] = timedTextLanguage;
     if (timedTextTrackName != null) queryParams["timedTextTrackName"] = timedTextTrackName;
@@ -1957,9 +2008,12 @@ class RealtimeResource_ {
    *
    * [fileId] - The ID of the file that the Realtime API data model is associated with.
    *
+   * [revision] - The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
+   *   Minimum: 1
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> get(core.String fileId, {core.Map optParams}) {
+  async.Future<core.Map> get(core.String fileId, {core.int revision, core.Map optParams}) {
     var url = "files/{fileId}/realtime";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1967,6 +2021,7 @@ class RealtimeResource_ {
     var paramErrors = new core.List();
     if (fileId == null) paramErrors.add("fileId is required");
     if (fileId != null) urlParams["fileId"] = fileId;
+    if (revision != null) queryParams["revision"] = revision;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {

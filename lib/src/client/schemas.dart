@@ -27,6 +27,9 @@ class About {
   /** This is always drive#about. */
   core.String kind;
 
+  /** The user's language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/). */
+  core.String languageCode;
+
   /** The largest change id. */
   core.int largestChangeId;
 
@@ -38,6 +41,9 @@ class About {
 
   /** The current user's ID as visible in the permissions collection. */
   core.String permissionId;
+
+  /** The amount of storage quota used by different Google services. */
+  core.List<AboutQuotaBytesByService> quotaBytesByService;
 
   /** The total number of quota bytes. */
   core.int quotaBytesTotal;
@@ -89,6 +95,9 @@ class About {
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
+    if (json.containsKey("languageCode")) {
+      languageCode = json["languageCode"];
+    }
     if (json.containsKey("largestChangeId")) {
       largestChangeId = (json["largestChangeId"] is core.String) ? core.int.parse(json["largestChangeId"]) : json["largestChangeId"];
     }
@@ -100,6 +109,9 @@ class About {
     }
     if (json.containsKey("permissionId")) {
       permissionId = json["permissionId"];
+    }
+    if (json.containsKey("quotaBytesByService")) {
+      quotaBytesByService = json["quotaBytesByService"].map((quotaBytesByServiceItem) => new AboutQuotaBytesByService.fromJson(quotaBytesByServiceItem)).toList();
     }
     if (json.containsKey("quotaBytesTotal")) {
       quotaBytesTotal = (json["quotaBytesTotal"] is core.String) ? core.int.parse(json["quotaBytesTotal"]) : json["quotaBytesTotal"];
@@ -155,6 +167,9 @@ class About {
     if (kind != null) {
       output["kind"] = kind;
     }
+    if (languageCode != null) {
+      output["languageCode"] = languageCode;
+    }
     if (largestChangeId != null) {
       output["largestChangeId"] = largestChangeId;
     }
@@ -166,6 +181,9 @@ class About {
     }
     if (permissionId != null) {
       output["permissionId"] = permissionId;
+    }
+    if (quotaBytesByService != null) {
+      output["quotaBytesByService"] = quotaBytesByService.map((quotaBytesByServiceItem) => quotaBytesByServiceItem.toJson()).toList();
     }
     if (quotaBytesTotal != null) {
       output["quotaBytesTotal"] = quotaBytesTotal;
@@ -422,6 +440,43 @@ class AboutMaxUploadSizes {
 
 }
 
+class AboutQuotaBytesByService {
+
+  /** The storage quota bytes used by the service. */
+  core.int bytesUsed;
+
+  /** The service's name, e.g. DRIVE, GMAIL, or PHOTOS. */
+  core.String serviceName;
+
+  /** Create new AboutQuotaBytesByService from JSON data */
+  AboutQuotaBytesByService.fromJson(core.Map json) {
+    if (json.containsKey("bytesUsed")) {
+      bytesUsed = (json["bytesUsed"] is core.String) ? core.int.parse(json["bytesUsed"]) : json["bytesUsed"];
+    }
+    if (json.containsKey("serviceName")) {
+      serviceName = json["serviceName"];
+    }
+  }
+
+  /** Create JSON Object for AboutQuotaBytesByService */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (bytesUsed != null) {
+      output["bytesUsed"] = bytesUsed;
+    }
+    if (serviceName != null) {
+      output["serviceName"] = serviceName;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of AboutQuotaBytesByService */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
 /** The apps resource provides a list of the apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. */
 class App {
 
@@ -433,6 +488,9 @@ class App {
 
   /** The url to create a new file with this app. */
   core.String createUrl;
+
+  /** Whether the app has drive-wide scope. An app with drive-wide scope can access all files in the user's drive. */
+  core.bool hasDriveWideScope;
 
   /** The various icons for the app. */
   core.List<AppIcons> icons;
@@ -488,6 +546,9 @@ class App {
   /** Whether this app supports opening more than one file. */
   core.bool supportsMultiOpen;
 
+  /** Whether this app supports creating new files when offline. */
+  core.bool supportsOfflineCreate;
+
   /** Whether the app is selected as the default handler for the types it supports. */
   core.bool useByDefault;
 
@@ -501,6 +562,9 @@ class App {
     }
     if (json.containsKey("createUrl")) {
       createUrl = json["createUrl"];
+    }
+    if (json.containsKey("hasDriveWideScope")) {
+      hasDriveWideScope = json["hasDriveWideScope"];
     }
     if (json.containsKey("icons")) {
       icons = json["icons"].map((iconsItem) => new AppIcons.fromJson(iconsItem)).toList();
@@ -556,6 +620,9 @@ class App {
     if (json.containsKey("supportsMultiOpen")) {
       supportsMultiOpen = json["supportsMultiOpen"];
     }
+    if (json.containsKey("supportsOfflineCreate")) {
+      supportsOfflineCreate = json["supportsOfflineCreate"];
+    }
     if (json.containsKey("useByDefault")) {
       useByDefault = json["useByDefault"];
     }
@@ -573,6 +640,9 @@ class App {
     }
     if (createUrl != null) {
       output["createUrl"] = createUrl;
+    }
+    if (hasDriveWideScope != null) {
+      output["hasDriveWideScope"] = hasDriveWideScope;
     }
     if (icons != null) {
       output["icons"] = icons.map((iconsItem) => iconsItem.toJson()).toList();
@@ -627,6 +697,9 @@ class App {
     }
     if (supportsMultiOpen != null) {
       output["supportsMultiOpen"] = supportsMultiOpen;
+    }
+    if (supportsOfflineCreate != null) {
+      output["supportsOfflineCreate"] = supportsOfflineCreate;
     }
     if (useByDefault != null) {
       output["useByDefault"] = useByDefault;
@@ -692,6 +765,9 @@ class AppIcons {
 /** A list of third-party applications which the user has installed or given access to Google Drive. */
 class AppList {
 
+  /** List of app IDs that the user has specified to use by default. */
+  core.List<core.String> defaultAppIds;
+
   /** The ETag of the list. */
   core.String etag;
 
@@ -706,6 +782,9 @@ class AppList {
 
   /** Create new AppList from JSON data */
   AppList.fromJson(core.Map json) {
+    if (json.containsKey("defaultAppIds")) {
+      defaultAppIds = json["defaultAppIds"].toList();
+    }
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -724,6 +803,9 @@ class AppList {
   core.Map toJson() {
     var output = new core.Map();
 
+    if (defaultAppIds != null) {
+      output["defaultAppIds"] = defaultAppIds.toList();
+    }
     if (etag != null) {
       output["etag"] = etag;
     }
@@ -1654,6 +1736,9 @@ class File {
   /** Last time this file was viewed by the user (formatted RFC 3339 timestamp). */
   core.String lastViewedByMeDate;
 
+  /** Time this file was explicitly marked viewed by the user (formatted RFC 3339 timestamp). */
+  core.String markedViewedByMeDate;
+
   /** An MD5 checksum for the content of this file. This is populated only for files with content stored in Drive. */
   core.String md5Checksum;
 
@@ -1682,6 +1767,9 @@ class File {
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder. */
   core.List<ParentReference> parents;
 
+  /** The list of permissions for users with access to this file. */
+  core.List<Permission> permissions;
+
   /** The list of properties. */
   core.List<Property> properties;
 
@@ -1697,6 +1785,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
   /** Time at which this file was shared with the user (formatted RFC 3339 timestamp). */
   core.String sharedWithMeDate;
 
+  /** User that shared the item with the current user, if available. */
+  User sharingUser;
+
   /** Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google. */
   FileThumbnail thumbnail;
 
@@ -1708,6 +1799,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
   /** The permissions for the authenticated user on this file. */
   Permission userPermission;
+
+  /** A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user. */
+  core.int version;
 
   /** A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials. */
   core.String webContentLink;
@@ -1792,6 +1886,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (json.containsKey("lastViewedByMeDate")) {
       lastViewedByMeDate = json["lastViewedByMeDate"];
     }
+    if (json.containsKey("markedViewedByMeDate")) {
+      markedViewedByMeDate = json["markedViewedByMeDate"];
+    }
     if (json.containsKey("md5Checksum")) {
       md5Checksum = json["md5Checksum"];
     }
@@ -1819,6 +1916,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (json.containsKey("parents")) {
       parents = json["parents"].map((parentsItem) => new ParentReference.fromJson(parentsItem)).toList();
     }
+    if (json.containsKey("permissions")) {
+      permissions = json["permissions"].map((permissionsItem) => new Permission.fromJson(permissionsItem)).toList();
+    }
     if (json.containsKey("properties")) {
       properties = json["properties"].map((propertiesItem) => new Property.fromJson(propertiesItem)).toList();
     }
@@ -1834,6 +1934,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (json.containsKey("sharedWithMeDate")) {
       sharedWithMeDate = json["sharedWithMeDate"];
     }
+    if (json.containsKey("sharingUser")) {
+      sharingUser = new User.fromJson(json["sharingUser"]);
+    }
     if (json.containsKey("thumbnail")) {
       thumbnail = new FileThumbnail.fromJson(json["thumbnail"]);
     }
@@ -1845,6 +1948,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (json.containsKey("userPermission")) {
       userPermission = new Permission.fromJson(json["userPermission"]);
+    }
+    if (json.containsKey("version")) {
+      version = (json["version"] is core.String) ? core.int.parse(json["version"]) : json["version"];
     }
     if (json.containsKey("webContentLink")) {
       webContentLink = json["webContentLink"];
@@ -1933,6 +2039,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (lastViewedByMeDate != null) {
       output["lastViewedByMeDate"] = lastViewedByMeDate;
     }
+    if (markedViewedByMeDate != null) {
+      output["markedViewedByMeDate"] = markedViewedByMeDate;
+    }
     if (md5Checksum != null) {
       output["md5Checksum"] = md5Checksum;
     }
@@ -1960,6 +2069,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (parents != null) {
       output["parents"] = parents.map((parentsItem) => parentsItem.toJson()).toList();
     }
+    if (permissions != null) {
+      output["permissions"] = permissions.map((permissionsItem) => permissionsItem.toJson()).toList();
+    }
     if (properties != null) {
       output["properties"] = properties.map((propertiesItem) => propertiesItem.toJson()).toList();
     }
@@ -1975,6 +2087,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     if (sharedWithMeDate != null) {
       output["sharedWithMeDate"] = sharedWithMeDate;
     }
+    if (sharingUser != null) {
+      output["sharingUser"] = sharingUser.toJson();
+    }
     if (thumbnail != null) {
       output["thumbnail"] = thumbnail.toJson();
     }
@@ -1986,6 +2101,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
     }
     if (userPermission != null) {
       output["userPermission"] = userPermission.toJson();
+    }
+    if (version != null) {
+      output["version"] = version;
     }
     if (webContentLink != null) {
       output["webContentLink"] = webContentLink;
@@ -2597,16 +2715,16 @@ class Permission {
   /** The authkey parameter required for this permission. */
   core.String authKey;
 
-  /** The domain name of the entity this permission refers to. This is an output-only field which is populated when the permission type is "user", "group" or "domain". */
+  /** The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain. */
   core.String domain;
 
-  /** The email address of the user this permission refers to. This is an output-only field which is populated when the permission type is "user" and the given user's Google+ profile privacy settings allow exposing their email address. */
+  /** The email address of the user this permission refers to. This is an output-only field which is present when the permission type is user and the given user's Google+ profile privacy settings allow exposing their email address. */
   core.String emailAddress;
 
   /** The ETag of the permission. */
   core.String etag;
 
-  /** The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of 'id' or 'value' fields must be specified. */
+  /** The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified. */
   core.String id;
 
   /** This is always drive#permission. */
@@ -2634,7 +2752,7 @@ class Permission {
 - anyone */
   core.String type;
 
-  /** The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of 'id' or 'value' fields must be specified. */
+  /** The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified. */
   core.String value;
 
   /** Whether the link is required for this permission. */
@@ -3209,6 +3327,9 @@ class User {
   /** A plain text displayable name for this user. */
   core.String displayName;
 
+  /** The email address of the user. */
+  core.String emailAddress;
+
   /** Whether this user is the same as the authenticated user for whom the request was made. */
   core.bool isAuthenticatedUser;
 
@@ -3225,6 +3346,9 @@ class User {
   User.fromJson(core.Map json) {
     if (json.containsKey("displayName")) {
       displayName = json["displayName"];
+    }
+    if (json.containsKey("emailAddress")) {
+      emailAddress = json["emailAddress"];
     }
     if (json.containsKey("isAuthenticatedUser")) {
       isAuthenticatedUser = json["isAuthenticatedUser"];
@@ -3246,6 +3370,9 @@ class User {
 
     if (displayName != null) {
       output["displayName"] = displayName;
+    }
+    if (emailAddress != null) {
+      output["emailAddress"] = emailAddress;
     }
     if (isAuthenticatedUser != null) {
       output["isAuthenticatedUser"] = isAuthenticatedUser;
