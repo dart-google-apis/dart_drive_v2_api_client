@@ -1,79 +1,39 @@
-# google_drive_v2_api
+# (Deprecated) google_drive_v2_api
 
-### Description
+### See [googleapis](https://pub.dartlang.org/packages/googleapis) or [googleapis_beta](https://pub.dartlang.org/packages/googleapis_beta) for latest libraries.
 
-Auto-generated client library for accessing the drive v2 API.
+If you would like to continue to use this library pin version constraint to 
+`'0.4.13'`
 
-#### ![Logo](https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png) Drive API - drive v2
-
-The API to interact with Drive.
-
-Official API documentation: https://developers.google.com/drive/
-
-Adding dependency to pubspec.yaml
-
-```
-  dependencies:
-    google_drive_v2_api: '>=0.4.13'
-```
-
-For web applications:
-
-```
-  import "package:google_drive_v2_api/drive_v2_api_browser.dart" as driveclient;
-```
-
-For console application:
-
-```
-  import "package:google_drive_v2_api/drive_v2_api_console.dart" as driveclient;
-```
-
-Working without authentication the following constructor can be called:
-
-```
-  var drive = new driveclient.Drive();
-```
-
-To use authentication create a new `GoogleOAuth2` object and pass it to the constructor:
-
-
-```
-  GoogleOAuth2 auth = new GoogleOAuth2(CLIENT_ID, SCOPES);
-  var drive = new driveclient.Drive(auth);
-```
+![alt tag](https://cloud.githubusercontent.com/assets/654526/4262495/26e744b4-3ba5-11e4-8b96-bfadd6eeaf9e.png)
 
 ### Licenses
 
 ```
-Copyright (c) 2013-2014 Gerwin Sturm & Adam Singer
+Copyright 2014, the Dart project authors. All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may 
-not use this file except in compliance with the License. You may obtain a 
-copy of the License at
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations 
-under the License
-
-------------------------
-Based on http://code.google.com/p/google-api-dart-client
-
-Copyright 2012 Google Inc.
-Licensed under the Apache License, Version 2.0 (the "License"); you may 
-not use this file except in compliance with the License. You may obtain a
-copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations 
-under the License
-
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```

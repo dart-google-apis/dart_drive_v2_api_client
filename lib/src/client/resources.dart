@@ -735,7 +735,7 @@ class FilesResource_ {
    *
    * [ocrLanguage] - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
    *
-   * [pinned] - Whether to pin the head revision of the new copy.
+   * [pinned] - Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
    *   Default: false
    *
    * [timedTextLanguage] - The language of the timed text.
@@ -909,7 +909,7 @@ class FilesResource_ {
    *
    * [ocrLanguage] - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
    *
-   * [pinned] - Whether to pin the head revision of the uploaded file.
+   * [pinned] - Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
    *   Default: false
    *
    * [timedTextLanguage] - The language of the timed text.
@@ -970,6 +970,11 @@ class FilesResource_ {
   /**
    * Lists the user's files.
    *
+   * [corpus] - The body of items (files/documents) to which the query applies.
+   *   Allowed values:
+   *     DEFAULT - The items that the user has accessed.
+   *     DOMAIN - Items shared to the user's domain.
+   *
    * [maxResults] - Maximum number of files to return.
    *   Default: 100
    *   Minimum: 0
@@ -985,12 +990,16 @@ class FilesResource_ {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<FileList> list({core.int maxResults, core.String pageToken, core.String projection, core.String q, core.Map optParams}) {
+  async.Future<FileList> list({core.String corpus, core.int maxResults, core.String pageToken, core.String projection, core.String q, core.Map optParams}) {
     var url = "files";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (corpus != null && !["DEFAULT", "DOMAIN"].contains(corpus)) {
+      paramErrors.add("Allowed values for corpus: DEFAULT, DOMAIN");
+    }
+    if (corpus != null) queryParams["corpus"] = corpus;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (projection != null && !["BASIC", "FULL"].contains(projection)) {
@@ -1028,7 +1037,7 @@ class FilesResource_ {
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
-   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
    *   Default: true
    *
    * [ocr] - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -1036,7 +1045,7 @@ class FilesResource_ {
    *
    * [ocrLanguage] - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
    *
-   * [pinned] - Whether to pin the new revision.
+   * [pinned] - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
    *   Default: false
    *
    * [removeParents] - Comma-separated list of parent IDs to remove.
@@ -1209,7 +1218,7 @@ class FilesResource_ {
    * [convert] - Whether to convert this file to the corresponding Google Docs format.
    *   Default: false
    *
-   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+   * [newRevision] - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
    *   Default: true
    *
    * [ocr] - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -1217,7 +1226,7 @@ class FilesResource_ {
    *
    * [ocrLanguage] - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
    *
-   * [pinned] - Whether to pin the new revision.
+   * [pinned] - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
    *   Default: false
    *
    * [removeParents] - Comma-separated list of parent IDs to remove.
@@ -1600,7 +1609,7 @@ class PermissionsResource_ {
    *
    * [emailMessage] - A custom message to include in notification emails.
    *
-   * [sendNotificationEmails] - Whether to send notification emails when sharing to users or groups.
+   * [sendNotificationEmails] - Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
    *   Default: true
    *
    * [optParams] - Additional query parameters

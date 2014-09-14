@@ -57,6 +57,11 @@ class About {
   /** The number of quota bytes used by trashed items. */
   core.int quotaBytesUsedInTrash;
 
+  /** The type of the user's storage quota. Possible values are:  
+- LIMITED 
+- UNLIMITED */
+  core.String quotaType;
+
   /** The number of remaining change ids. */
   core.int remainingChangeIds;
 
@@ -124,6 +129,9 @@ class About {
     }
     if (json.containsKey("quotaBytesUsedInTrash")) {
       quotaBytesUsedInTrash = (json["quotaBytesUsedInTrash"] is core.String) ? core.int.parse(json["quotaBytesUsedInTrash"]) : json["quotaBytesUsedInTrash"];
+    }
+    if (json.containsKey("quotaType")) {
+      quotaType = json["quotaType"];
     }
     if (json.containsKey("remainingChangeIds")) {
       remainingChangeIds = (json["remainingChangeIds"] is core.String) ? core.int.parse(json["remainingChangeIds"]) : json["remainingChangeIds"];
@@ -196,6 +204,9 @@ class About {
     }
     if (quotaBytesUsedInTrash != null) {
       output["quotaBytesUsedInTrash"] = quotaBytesUsedInTrash;
+    }
+    if (quotaType != null) {
+      output["quotaType"] = quotaType;
     }
     if (remainingChangeIds != null) {
       output["remainingChangeIds"] = remainingChangeIds;
@@ -765,7 +776,7 @@ class AppIcons {
 /** A list of third-party applications which the user has installed or given access to Google Drive. */
 class AppList {
 
-  /** List of app IDs that the user has specified to use by default. */
+  /** List of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest). */
   core.List<core.String> defaultAppIds;
 
   /** The ETag of the list. */
@@ -1664,16 +1675,16 @@ class CommentReplyList {
 /** The metadata for a file. */
 class File {
 
-  /** A link for opening the file in using a relevant Google editor or viewer. */
+  /** A link for opening the file in a relevant Google editor or viewer. */
   core.String alternateLink;
 
-  /** Whether this file is in the appdata folder. */
+  /** Whether this file is in the Application Data folder. */
   core.bool appDataContents;
 
   /** Whether the file can be copied by the current user. */
   core.bool copyable;
 
-  /** Create time for this file (formatted ISO8601 timestamp). */
+  /** Create time for this file (formatted RFC 3339 timestamp). */
   core.String createdDate;
 
   /** A link to open this file with the user's default app for this file. Only populated when the drive.apps.readonly scope is used. */
@@ -2718,7 +2729,7 @@ class Permission {
   /** The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain. */
   core.String domain;
 
-  /** The email address of the user this permission refers to. This is an output-only field which is present when the permission type is user and the given user's Google+ profile privacy settings allow exposing their email address. */
+  /** The email address of the user this permission refers to. This is an output-only field which is present when the permission type is user. */
   core.String emailAddress;
 
   /** The ETag of the permission. */

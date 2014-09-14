@@ -7,6 +7,7 @@ import 'package:google_drive_v2_api/src/console_client.dart';
 import "package:google_drive_v2_api/drive_v2_api_client.dart";
 
 /** The API to interact with Drive. */
+@deprecated
 class Drive extends Client with ConsoleClient {
 
   /** OAuth Scope2: View and manage the files and documents in your Google Drive */
